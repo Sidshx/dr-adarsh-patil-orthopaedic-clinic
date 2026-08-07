@@ -610,14 +610,9 @@ def build_gallery():
   </div>
 </section>"""
 
-    notes = f"""<section class="section section--tint">
+    notes = """<section class="section section--tint">
   <div class="container">
-    <div class="grid grid--3">
-      <article class="card"><span class="card__icon" data-tone="green">{IC['pin']}</span><h3>Street level entrance</h3><p>The clinic is at street level in Sector 1, Sanpada, with the signboard above the glass entrance door. No stairs at the entrance.</p></article>
-      <article class="card"><span class="card__icon" data-tone="blue">{IC['clock']}</span><h3>Reception and waiting</h3><p>Reception handles appointment confirmation and records. Consultations are {HOURS}.</p></article>
-      <article class="card"><span class="card__icon" data-tone="orange">{IC['hospital']}</span><h3>Examination room</h3><p>A separate examination room is used for clinical examination, dressings, plaster and injections.</p></article>
-    </div>
-    <p style="text-align:center;margin-top:2.25rem"><a class="btn btn--primary" href="contact.html">Book an appointment</a></p>
+    <p style="text-align:center;margin:0"><a class="btn btn--primary" href="contact.html">Book an appointment</a></p>
   </div>
 </section>"""
 
