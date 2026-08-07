@@ -1,3 +1,0 @@
-Reference sketch (not used directly) — logo concept notes:
-A single abstract joint mark: a rounded long-bone shape curving into a circular joint head,
-crossed by a subtle vertical spine-line accent. Reads at 24px and 200px. currentColor stroke.
