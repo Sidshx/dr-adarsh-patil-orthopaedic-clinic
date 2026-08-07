@@ -19,6 +19,7 @@ HOURS = "Monday to Sunday, by appointment"
 MAP_Q = "Datta+Ganesh+CHS,+Plot+No.+101,+Sector+1,+Sanpada,+Navi+Mumbai,+Maharashtra+400705"
 MAP_LINK = "https://www.google.com/maps/search/?api=1&amp;query=" + MAP_Q
 MAP_EMBED = "https://www.google.com/maps?q=" + MAP_Q + "&amp;output=embed"
+GOOGLE_PROFILE = "https://share.google/PiXCMrwgPo3YnYGQm"
 
 # ---------------------------------------------------------------- icons
 IC = {
@@ -35,6 +36,9 @@ IC = {
     "cap": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8.5 12 4l10 4.5-10 4.5z"/><path d="M6 10.7V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.3"/></svg>',
     "id": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8.5" cy="11.5" r="2"/><path d="M5 16c.7-1.4 2-2 3.5-2s2.8.6 3.5 2M15 10h4M15 14h3"/></svg>',
     "lang": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>',
+    "google": '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.4a5.5 5.5 0 0 1-2.4 3.6v3h3.9c2.3-2.1 3.6-5.2 3.6-8.8z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.9-3a7.2 7.2 0 0 1-10.7-3.8h-4v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.3 14.3a7.1 7.1 0 0 1 0-4.6v-3.1h-4a12 12 0 0 0 0 10.8l4-3.1z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.4.6 4.6 1.8l3.5-3.5A12 12 0 0 0 1.3 6.6l4 3.1A7.2 7.2 0 0 1 12 4.8z"/></svg>',
+    "star": '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2.5 2.9 5.9 6.6.9-4.8 4.6 1.2 6.5-5.9-3.1-5.9 3.1 1.2-6.5L2.5 9.3l6.6-.9z"/></svg>',
+    "quote": '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.5 5C6.5 6.6 4.8 9.3 4.8 12.6V19h6.4v-6.4H8.1c0-2.2.9-3.8 2.8-4.9L9.5 5zm9.4 0c-3 1.6-4.7 4.3-4.7 7.6V19h6.4v-6.4h-3.1c0-2.2.9-3.8 2.8-4.9L18.9 5z"/></svg>',
     "hospital": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V8l8-5 8 5v13"/><path d="M9 21v-5h6v5M12 8v4M10 10h4"/></svg>',
     # service icons
     "joint": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v4.2a3 3 0 0 1-1 2.2 3.5 3.5 0 0 0 0 5.2 3 3 0 0 1 1 2.2V21"/><path d="M16 3v4.2a3 3 0 0 0 1 2.2 3.5 3.5 0 0 1 0 5.2 3 3 0 0 0-1 2.2V21"/><path d="M8 12h8"/></svg>',
@@ -222,9 +226,10 @@ def fabs():
 """
 
 
-def tail():
+def tail(reviews=False):
+    extra = '<script src="js/reviews.js" defer></script>\n' if reviews else ''
     return """<script src="js/main.js" defer></script>
-</body>
+""" + extra + """</body>
 </html>
 """
 

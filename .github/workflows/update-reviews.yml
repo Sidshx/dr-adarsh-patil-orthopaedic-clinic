@@ -1,0 +1,48 @@
+name: Update Google reviews
+
+# Keeps data/reviews.json in step with the clinic's Google Business Profile.
+# Runs daily and can also be triggered by hand from the Actions tab.
+
+on:
+  schedule:
+    - cron: "30 1 * * *" # 07:00 IST daily
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-reviews
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch latest reviews
+        env:
+          GBP_CLIENT_ID: ${{ secrets.GBP_CLIENT_ID }}
+          GBP_CLIENT_SECRET: ${{ secrets.GBP_CLIENT_SECRET }}
+          GBP_REFRESH_TOKEN: ${{ secrets.GBP_REFRESH_TOKEN }}
+          GBP_LOCATION_NAME: ${{ secrets.GBP_LOCATION_NAME }}
+          REVIEWS_MAX: "15"
+          REVIEWS_MIN_STARS: "4"
+        run: python3 tools/fetch_reviews.py
+
+      - name: Commit if the reviews changed
+        run: |
+          if git diff --quiet -- data/reviews.json; then
+            echo "No change in reviews."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/reviews.json
+          git commit -m "Sync Google reviews"
+          git push

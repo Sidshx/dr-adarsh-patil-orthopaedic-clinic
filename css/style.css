@@ -617,3 +617,68 @@ li { margin-bottom: 0.4em; }
 @media (min-width: 1600px) {
   :root { --wrap: 1360px; }
 }
+
+/* ---------- 20. Google reviews marquee ---------- */
+.reviews { overflow: hidden; }
+.reviews__summary { margin: -0.5rem 0 2rem; }
+.reviews__badge {
+  display: inline-flex; align-items: center; gap: 0.7rem; flex-wrap: wrap;
+  margin: 0 auto; padding: 0.7rem 1.35rem; border-radius: 999px;
+  background: #fff; border: 1px solid var(--line);
+  box-shadow: 0 6px 22px rgba(22, 38, 72, 0.07);
+}
+.reviews__summary .container { display: flex; justify-content: center; }
+.reviews__g { display: inline-flex; width: 22px; height: 22px; }
+.reviews__g svg { width: 100%; height: 100%; }
+.reviews__score { font-family: var(--display); font-weight: 800; font-size: 1.25rem; color: var(--navy); line-height: 1; }
+.reviews__stars { display: inline-flex; gap: 2px; color: #F5A623; }
+.reviews__stars svg { width: 17px; height: 17px; }
+.reviews__count { font-size: 0.9rem; color: var(--muted); }
+
+.reviews__viewport {
+  position: relative; overflow: hidden; padding: 0.5rem 0 0.75rem;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+}
+.reviews__track { display: flex; gap: 1.25rem; width: max-content; animation: reviews-scroll 80s linear infinite; }
+.reviews__viewport:hover .reviews__track,
+.reviews__viewport:focus-within .reviews__track { animation-play-state: paused; }
+@keyframes reviews-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.reviews__loading { padding: 2rem 1.5rem; color: var(--muted); }
+
+.review-card {
+  flex: 0 0 auto; width: min(380px, 82vw); display: flex; flex-direction: column;
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 1.5rem 1.6rem 1.35rem; box-shadow: 0 8px 26px rgba(22, 38, 72, 0.06);
+}
+.review-card__top { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.85rem; }
+.review-card__g { display: inline-flex; width: 20px; height: 20px; flex: 0 0 auto; }
+.review-card__g svg { width: 100%; height: 100%; }
+.review-card__stars { display: inline-flex; gap: 2px; color: #F5A623; }
+.review-card__stars svg { width: 15px; height: 15px; }
+.review-card__when { font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
+.review-card__text { margin: 0 0 1.1rem; font-size: 0.95rem; line-height: 1.65; color: var(--ink); }
+.review-card__foot { display: flex; align-items: center; gap: 0.7rem; margin-top: auto; }
+.review-card__avatar {
+  width: 38px; height: 38px; border-radius: 50%; flex: 0 0 auto;
+  display: grid; place-items: center; background: var(--navy); color: #fff;
+  font-family: var(--display); font-weight: 700; font-size: 0.95rem; line-height: 1;
+}
+.review-card__name { font-weight: 700; font-size: 0.92rem; color: var(--navy); }
+.review-card__guide { display: block; font-size: 0.75rem; color: var(--muted); font-weight: 500; }
+.review-card__quote { margin-left: auto; width: 26px; height: 26px; color: rgba(240, 126, 38, 0.28); }
+.review-card__quote svg { width: 100%; height: 100%; }
+
+.reviews__foot { text-align: center; margin: 1.5rem 0 0; }
+.reviews__attrib { text-align: center; margin: 1rem auto 0; max-width: 62ch; font-size: 0.8rem; line-height: 1.6; color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reviews__track { animation: none; }
+  .reviews__viewport { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}
+@media (max-width: 720px) {
+  .reviews__track { animation-duration: 60s; }
+  .review-card { padding: 1.25rem 1.3rem 1.1rem; }
+  /* keep the CTA and attribution clear of the floating call/WhatsApp buttons */
+  .reviews__foot, .reviews__attrib { padding-right: 3.25rem; }
+}

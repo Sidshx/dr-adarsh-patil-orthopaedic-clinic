@@ -326,10 +326,41 @@ def build_index():
   </div>
 </section>"""
 
+    reviews = f"""<section class="section section--tint reviews" id="reviews">
+  <div class="container">
+    <div class="section-head section-head--center">
+      <span class="eyebrow">Patient feedback</span>
+      <h2>Reviews From Our Patients</h2>
+      <p class="lead">Reviews published by patients on the clinic&rsquo;s Google Business Profile. They are shown here as written by their authors.</p>
+    </div>
+  </div>
+  <div class="reviews__summary" data-reviews-summary hidden>
+    <div class="container">
+      <div class="reviews__badge">
+        <span class="reviews__g" aria-hidden="true">{IC['google']}</span>
+        <span class="reviews__score" data-reviews-rating></span>
+        <span class="reviews__stars" data-reviews-stars aria-hidden="true"></span>
+        <span class="reviews__count" data-reviews-count></span>
+      </div>
+    </div>
+  </div>
+  <div class="reviews__viewport" data-reviews-track-wrap>
+    <div class="reviews__track" data-reviews-track>
+      <p class="reviews__loading">Loading reviews from Google&hellip;</p>
+    </div>
+  </div>
+  <div class="container">
+    <p class="reviews__foot">
+      <a class="btn btn--outline" href="{GOOGLE_PROFILE}" target="_blank" rel="noopener">Read all reviews on Google {IC['arrow']}</a>
+    </p>
+    <p class="reviews__attrib">Reviews are the opinions of their individual authors and are sourced from Google. They describe personal experience and are not a promise or guarantee of any medical outcome. Last synced <span data-reviews-updated>&mdash;</span>.</p>
+  </div>
+</section>"""
+
     html = (h + topbar() + header() + navbar("index.html")
             + '<main id="main">\n' + hero + about + stats + services + band_walk
-            + hospitals + approach + gallery + band_wait + faq + contact + '\n</main>\n'
-            + footer() + fabs() + lightbox() + tail())
+            + hospitals + approach + gallery + band_wait + reviews + faq + contact + '\n</main>\n'
+            + footer() + fabs() + lightbox() + tail(reviews=True))
     write('index.html', html)
 
 
