@@ -210,13 +210,13 @@ def build_index():
   </div>
 </section>"""
 
-    stats = f"""<section class="stats" aria-label="Clinic at a glance">
+    stats = f"""<section class="stats" aria-label="Qualifications at a glance">
   <div class="container">
     <div class="stats__grid">
-      <div class="stat"><span class="stat__num" data-count="10">0</span><span class="stat__label">Conditions Treated</span></div>
-      <div class="stat"><span class="stat__num" data-count="6">0</span><span class="stat__label">Procedures Offered</span></div>
-      <div class="stat"><span class="stat__num" data-count="3">0</span><span class="stat__label">Affiliated Hospitals</span></div>
-      <div class="stat"><span class="stat__num" data-count="3">0</span><span class="stat__label">Languages Spoken</span></div>
+      <div class="stat"><span class="stat__key">MBBS, MS</span><span class="stat__label">Orthopaedics</span></div>
+      <div class="stat"><span class="stat__key">Gold Medal</span><span class="stat__label">Orthopaedics</span></div>
+      <div class="stat"><span class="stat__key">Fellowship</span><span class="stat__label">Hand Surgery</span></div>
+      <div class="stat"><span class="stat__key">Mon&ndash;Sun</span><span class="stat__label">By Appointment</span></div>
     </div>
   </div>
 </section>"""
