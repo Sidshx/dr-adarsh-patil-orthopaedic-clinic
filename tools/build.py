@@ -286,7 +286,7 @@ def build_index():
   </div>
 </section>"""
 
-    band_wait = f"""<section class="band" aria-label="Clinic waiting area">
+    band_wait = f"""<section class="band band--logo-left" aria-label="Clinic waiting area">
   <img src="assets/banner-waiting-area.jpg" alt="An older couple seated in the clinic waiting area" width="1600" height="406" loading="lazy">
   <div class="band__caption">
     <div class="container">
@@ -425,7 +425,7 @@ def build_about():
   </div>
 </section>"""
 
-    band = f"""<section class="band" aria-label="Clinic waiting area">
+    band = f"""<section class="band band--logo-left" aria-label="Clinic waiting area">
   <img src="assets/banner-waiting-area.jpg" alt="An older couple seated in the clinic waiting area" width="1600" height="406" loading="lazy">
   <div class="band__caption">
     <div class="container">
@@ -600,7 +600,7 @@ def build_gallery():
   </div>
 </section>"""
 
-    band = f"""<section class="band band--tall" aria-label="Clinic waiting area">
+    band = f"""<section class="band band--tall band--logo-left" aria-label="Clinic waiting area">
   <img src="assets/banner-waiting-area.jpg" alt="An older couple seated in the clinic waiting area" width="1600" height="406" loading="lazy">
   <div class="band__caption">
     <div class="container">

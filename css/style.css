@@ -375,6 +375,13 @@ li { margin-bottom: 0.4em; }
 .band--tall img { height: clamp(260px, 38vw, 460px); }
 /* banners with a burned-in logo in a top corner must not have that corner cropped */
 .band--logo-top img { object-position: 50% 0%; }
+/* banners with the clinic logo burned into the top-left must never crop that corner */
+.band--logo-left img { object-position: 0% 0%; }
+/* on small screens the wide logo banner is shown whole, with the caption stacked beneath it */
+@media (max-width: 720px) {
+  .band--logo-left img { height: auto; aspect-ratio: 1600 / 406; object-fit: contain; }
+  .band--logo-left .band__caption { position: static; background: var(--navy); padding: 1.25rem 0 1.5rem; }
+}
 .band__caption {
   position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(1.25rem, 3vw, 2.25rem) 0;
   background: linear-gradient(to top, rgba(11, 20, 40, 0.9), rgba(11, 20, 40, 0));
