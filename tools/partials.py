@@ -300,8 +300,8 @@ INAUGURATION_ITEMS = [
      "Family members and guests seated together in the consulting room, with bouquets and balloons around them",
      "Family and guests at the clinic"),
     ("bouquet-presentation",
-     "Dr. Adarsh Patil presenting a bouquet of flowers to a guest inside the clinic",
-     "Presenting a bouquet to a guest"),
+     "Dr. Adarsh Patil presenting a bouquet of flowers to Mrs. Manda Mhatre, MLA, Belapur Constituency, inside the clinic",
+     "With Mrs. Manda Mhatre, MLA, Belapur"),
 ]
 
 
