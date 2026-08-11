@@ -189,6 +189,8 @@ def footer():
           <li><a href="gallery.html">Gallery</a></li>
           <li><a href="contact.html">Contact &amp; Location</a></li>
           <li><a href="services.html#conditions">Conditions Treated</a></li>
+          <li><a href="services.html#expertise">Expertise</a></li>
+          <li><a href="services.html#clinic-services">Clinic Services</a></li>
         </ul>
       </div>
       <div>

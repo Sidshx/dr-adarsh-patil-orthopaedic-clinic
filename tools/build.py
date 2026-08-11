@@ -80,6 +80,29 @@ EXPERTISE = [
      "Ilizarov external fixation for complex fractures, non-union and deformity correction."),
 ]
 
+PATIENT_SERVICES = [
+    ("Orthopaedic Consultation",
+     "Clinical examination, diagnosis and treatment planning for bone, joint, spine and trauma conditions at the clinic in Sanpada."),
+    ("X-ray / MRI Report Review",
+     "Review of imaging films and reports brought by the patient during the consultation, with findings explained in plain language."),
+    ("Plaster &amp; Bracing",
+     "Immobilisation and bracing for fractures, sprains and post-injury care at the Sanpada clinic."),
+    ("Fracture Fixation Surgery",
+     "Realignment and stabilisation of broken bones with plates, screws, nails or wires at affiliated hospitals in Navi Mumbai."),
+    ("Arthroscopy (Keyhole Surgery)",
+     "Minimally invasive joint surgery for knee and shoulder problems, performed through small keyhole incisions."),
+    ("Joint Replacement Surgery",
+     "Arthroplasty to replace a damaged joint surface with an implant, for advanced arthritis and joint damage."),
+    ("Hand Surgery",
+     "Surgical treatment of hand and wrist conditions, following a completed fellowship in hand surgery."),
+    ("Intra-articular Injections",
+     "Joint injections for pain relief and inflammation control, administered at the clinic."),
+    ("Rehabilitation Guidance",
+     "Physiotherapy referral, activity modification advice and a staged return-to-movement plan."),
+    ("Follow-up Care",
+     "Scheduled review of healing, recovery and treatment progress at the clinic in Sanpada."),
+]
+
 FAQS = [    ("How do I book an appointment?",
      "Consultations are by appointment, Monday to Sunday. Call or send a WhatsApp message to +91 70205 25460, or email adarshpatilortho@gmail.com with a preferred day and time, and the clinic will confirm a slot."),
     ("What should I bring to my first visit?",
@@ -117,6 +140,17 @@ def expertise_grid():
     for icon, tone, title, desc in EXPERTISE:
         out.append(f"""<article class="card card--compact reveal">
   <span class="card__icon card__icon--sm" data-tone="{tone}">{IC[icon]}</span>
+  <h3>{title}</h3>
+  <p>{desc}</p>
+</article>""")
+    out.append('</div>')
+    return "\n".join(out)
+
+
+def patient_services_grid():
+    out = ['<div class="grid grid--3">']
+    for title, desc in PATIENT_SERVICES:
+        out.append(f"""<article class="card card--compact reveal">
   <h3>{title}</h3>
   <p>{desc}</p>
 </article>""")
@@ -171,8 +205,8 @@ def contact_info_list():
 def build_index():
     jsonld = jsonld_clinic("index.html") + "\n" + jsonld_faq([(q, a) for q, a in FAQS])
     h = head(
-        f"{CLINIC} — Bone &amp; Joint Specialists, Sanpada, Navi Mumbai",
-        "Orthopaedic clinic in Sanpada, Navi Mumbai. Dr. Adarsh D. Patil, MBBS, MS (Orthopaedics), Consultant Orthopaedic / Trauma Surgeon. Consultations Monday to Sunday, by appointment.",
+        f"Orthopaedic Surgeon in Sanpada, Navi Mumbai — {CLINIC}",
+        "Orthopaedic clinic in Sanpada, Navi Mumbai. Dr. Adarsh D. Patil, MBBS, MS (Orthopaedics), Consultant Orthopaedic and Trauma Surgeon. Treatment for joint pain, arthritis, back pain, fractures and hand conditions. Consultations Monday to Sunday, by appointment.",
         "index.html", jsonld=jsonld)
 
     hero = f"""<section class="hero" aria-label="Introduction">
@@ -189,10 +223,11 @@ def build_index():
           <span>Orthopaedic &amp; Trauma Surgeon</span>
           <span class="accent">Bone, Joint &amp; Spine Care</span>
         </h1>
-        <p class="hero__text">Consultation, diagnosis and treatment for bone, joint, spine and trauma conditions at our clinic in Sector 1, Sanpada, Navi Mumbai. {DEGREES}. Registration {REG}.</p>
+        <p class="hero__text">Orthopaedic consultation, diagnosis and treatment for bone, joint, spine and trauma conditions at our clinic in Sector 1, Sanpada, Navi Mumbai. {DEGREES}. Registration {REG}.</p>
         <ul class="hero__points">
           <li><span class="tick">{IC['play']}</span> Joint pain, arthritis, back and neck pain</li>
           <li><span class="tick">{IC['play']}</span> Fractures, trauma and ligament injuries</li>
+          <li><span class="tick">{IC['play']}</span> Hand surgery and sports injuries</li>
         </ul>
         <a class="btn btn--primary" href="contact.html">Book Appointment</a>
       </div>
@@ -202,7 +237,7 @@ def build_index():
           <span>Orthopaedic Treatment</span>
           <span class="accent">In Sanpada, Navi Mumbai</span>
         </h1>
-        <p class="hero__text">Arthroscopy, joint replacement, spine surgery, fracture fixation, Ilizarov external fixation and hand surgery, carried out at affiliated hospitals in Navi Mumbai.</p>
+        <p class="hero__text">Arthroscopy, joint replacement, spine surgery, fracture fixation, Ilizarov external fixation and hand surgery, carried out at affiliated hospitals in Navi Mumbai. Serving patients in Sanpada, Vashi and across Navi Mumbai.</p>
         <ul class="hero__points">
           <li><span class="tick">{IC['play']}</span> Consultations {HOURS}</li>
           <li><span class="tick">{IC['play']}</span> English, Hindi and Marathi spoken</li>
@@ -228,7 +263,7 @@ def build_index():
       <p class="doctor-degrees">{DEGREES}</p>
       <p class="doctor-role">{ROLE} &middot; Orthopaedic Surgeon, Spine &amp; Pain Specialist, Spine Surgeon (Ortho)</p>
       <hr class="rule">
-      <p>Dr. Adarsh D. Patil consults at {CLINIC} in Sector 1, Sanpada, Navi Mumbai. His practice covers bone, joint and spine conditions, sports and ligament injuries, and fracture and trauma care, in both non-surgical and surgical forms.</p>
+      <p>Dr. Adarsh D. Patil consults at {CLINIC} in Sector 1, Sanpada, Navi Mumbai. His practice covers bone, joint and spine conditions, sports and ligament injuries, and fracture and trauma care, in both non-surgical and surgical forms. Patients from Sanpada, Vashi, Belapur and across Navi Mumbai are seen at the clinic.</p>
       <p>Consultations include clinical examination, review of imaging and reports, an explanation of the diagnosis, and a treatment plan discussed with the patient. Surgical treatment, when it is indicated, is carried out at affiliated hospitals in Navi Mumbai.</p>
       <ul class="facts">
         <li><span class="ico">{IC['cap']}</span><span><span class="k">Qualifications</span><span class="v">MBBS &middot; MS (Orthopaedics)</span></span></li>
@@ -422,14 +457,14 @@ def build_index():
 def build_about():
     jsonld = jsonld_clinic("about.html") + "\n" + jsonld_breadcrumb("About", "about.html")
     h = head(
-        f"About {DOCTOR} — {CLINIC}",
-        "Dr. Adarsh D. Patil, MBBS, MS (Orthopaedics), Consultant Orthopaedic / Trauma Surgeon in Sanpada, Navi Mumbai. Qualifications, registration, certifications and hospital affiliations.",
+        f"About Dr. Adarsh Patil — Orthopaedic Surgeon in Sanpada, Navi Mumbai",
+        "Dr. Adarsh D. Patil, MBBS, MS (Orthopaedics), Consultant Orthopaedic and Trauma Surgeon in Sanpada, Navi Mumbai. Qualifications, registration, certifications and hospital affiliations. Gold Medal in Orthopaedics, fellowship in hand surgery.",
         "about.html", og_image="assets/doctor-photo.jpg", jsonld=jsonld)
 
     page_hero = f"""<section class="page-hero">
   <div class="container">
     <p class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; About</p>
-    <h1>About {DOCTOR}</h1>
+    <h1>Orthopaedic Surgeon in Sanpada, Navi Mumbai</h1>
     <p>{DEGREES} &middot; {ROLE} &middot; Registration {REG}</p>
   </div>
 </section>"""
@@ -446,7 +481,7 @@ def build_about():
       <p class="doctor-role">{ROLE}</p>
       <hr class="rule">
       <p>Dr. Adarsh D. Patil is an orthopaedic and trauma surgeon practising at {CLINIC} in Sector 1, Sanpada, Navi Mumbai. He is registered with the Maharashtra Medical Council under registration number MMC2020053493.</p>
-      <p>His clinical work covers joint and bone conditions, spine and pain problems, fractures and trauma, ligament and sports injuries, and hand conditions. Care ranges from medication, injections, plaster and bracing through to arthroscopy, joint replacement, spine surgery, fracture fixation, Ilizarov external fixation and hand surgery.</p>
+      <p>His clinical work covers joint and bone conditions, spine and pain problems, fractures and trauma, ligament and sports injuries, and hand conditions. Care ranges from medication, injections, plaster and bracing through to arthroscopy, joint replacement, spine surgery, fracture fixation, Ilizarov external fixation and hand surgery. Patients from Sanpada, Vashi, Belapur and across Navi Mumbai consult at the clinic.</p>
       <p>Consultations are held in English, Hindi or Marathi, {HOURS}.</p>
       <ul class="pill-list" style="margin-top:1.5rem">
         <li><span class="pill">Orthopaedic Surgeon</span></li>
@@ -542,22 +577,33 @@ def build_about():
 def build_services():
     jsonld = jsonld_clinic("services.html") + "\n" + jsonld_breadcrumb("Services", "services.html")
     h = head(
-        f"Orthopaedic Services, Conditions &amp; Procedures — {CLINIC}",
-        "Conditions treated and procedures offered at Dr. Adarsh Patil's Orthopaedic Clinic, Sanpada, Navi Mumbai: joint pain, arthritis, spine care, fractures and trauma, arthroscopy, joint replacement and hand surgery.",
+        f"Orthopaedic Services in Sanpada, Navi Mumbai — {CLINIC}",
+        "Orthopaedic services, conditions treated and procedures offered by Dr. Adarsh Patil in Sanpada, Navi Mumbai: joint pain and arthritis treatment, spine care, fracture and trauma surgery, arthroscopy, joint replacement, hand surgery and Ilizarov external fixation.",
         "services.html", jsonld=jsonld)
 
     page_hero = f"""<section class="page-hero">
   <div class="container">
     <p class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Services</p>
-    <h1>Services</h1>
-    <p>Consultation, diagnosis and treatment for bone, joint, spine and trauma conditions at Sector 1, Sanpada, Navi Mumbai.</p>
+    <h1>Orthopaedic Services in Sanpada</h1>
+    <p>Consultation, diagnosis and treatment for bone, joint, spine and trauma conditions at Dr. Adarsh Patil's Orthopaedic Clinic in Sector 1, Sanpada, Navi Mumbai.</p>
   </div>
 </section>"""
 
-    overview = f"""<section class="section">
+    expertise_sec = f"""<section class="section" id="expertise">
   <div class="container">
     <div class="section-head section-head--center">
-      <span class="eyebrow">Areas of practice</span>
+      <span class="eyebrow">Areas of expertise</span>
+      <h2>Orthopaedic Expertise</h2>
+      <p class="lead">Dr. Adarsh D. Patil treats the full range of bone, joint, spine and trauma conditions at the clinic in Sanpada, Navi Mumbai.</p>
+    </div>
+    {expertise_grid()}
+  </div>
+</section>"""
+
+    overview = f"""<section class="section section--tint">
+  <div class="container">
+    <div class="section-head section-head--center">
+      <span class="eyebrow">Treatment areas</span>
       <h2>Orthopaedic Services</h2>
     </div>
     {service_cards(link_base="")}
@@ -569,12 +615,12 @@ def build_services():
     details.append("""<div class="section-head"><span class="eyebrow">In detail</span><h2>Service Details</h2></div>""")
     detail_copy = {
         "joint-arthritis": [
-            "Joint pain can come from wear of the joint surface, inflammation, crystal deposits such as gout, or from reduced bone density. Assessment starts with a clinical examination and a review of any X-rays or blood reports you bring with you.",
-            "Treatment may include medication, activity modification, physiotherapy referral, bracing, or intra-articular injections. Where joint damage is advanced and symptoms are not controlled, joint replacement surgery is discussed as an option.",
+            "Joint pain can come from wear of the joint surface, inflammation, crystal deposits such as gout, or from reduced bone density. Assessment at the clinic in Sanpada starts with a clinical examination and a review of any X-rays or blood reports you bring with you.",
+            "Treatment may include medication, activity modification, physiotherapy referral, bracing, or intra-articular injections. Where joint damage is advanced and symptoms are not controlled, joint replacement surgery is discussed as an option at affiliated hospitals in Navi Mumbai.",
         ],
         "spine-pain": [
-            "Back and neck pain is assessed for its origin — muscular, disc-related, degenerative, or associated with nerve compression. Symptoms such as radiating pain, numbness or weakness are examined specifically.",
-            "Most spinal problems are managed without surgery, using medication, posture and activity guidance and physiotherapy. Spine surgery is considered where symptoms persist or where there are progressive neurological signs.",
+            "Back and neck pain is assessed for its origin — muscular, disc-related, degenerative, or associated with nerve compression. Symptoms such as radiating pain, numbness or weakness are examined specifically at the clinic in Sanpada.",
+            "Most spinal problems are managed without surgery, using medication, posture and activity guidance and physiotherapy. Spine surgery is considered where symptoms persist or where there are progressive neurological signs, performed at affiliated hospitals in Navi Mumbai.",
         ],
         "trauma": [
             "Fracture and trauma care covers injuries from falls, road traffic accidents, workplace incidents and sport. Initial care includes assessment, pain relief, and immobilisation with plaster or bracing where appropriate.",
@@ -585,8 +631,8 @@ def build_services():
             "Joint replacement surgery (arthroplasty) replaces a damaged joint surface with an implant. The decision to proceed is based on symptoms, examination findings, imaging and how much daily activity is affected.",
         ],
         "hand-surgery": [
-            "Hand and wrist conditions are assessed for the effect on grip, dexterity and daily function. Non-surgical care includes splinting, injections and hand therapy guidance.",
-            "Surgical treatment of hand and wrist conditions is offered following a completed fellowship in hand surgery.",
+            "Hand and wrist conditions are assessed for the effect on grip, dexterity and daily function. Non-surgical care includes splinting, injections and hand therapy guidance at the clinic in Sanpada.",
+            "Surgical treatment of hand and wrist conditions is offered following a completed fellowship in hand surgery, at affiliated hospitals in Navi Mumbai.",
         ],
         "sports": [
             "Ligament and sports injuries are examined for joint stability, range of motion and associated cartilage or tendon damage. Shoulder problems and bone deformities are assessed in the same consultation setting.",
@@ -641,15 +687,26 @@ def build_services():
   <div class="band__caption">
     <div class="container">
       <h2>Follow-up and rehabilitation</h2>
-      <p>Recovery is reviewed at scheduled follow-up visits, with rehabilitation adjusted to how the joint or bone is healing.</p>
+      <p>Recovery is reviewed at scheduled follow-up visits at the clinic in Sanpada, with rehabilitation adjusted to how the joint or bone is healing.</p>
     </div>
+  </div>
+</section>"""
+
+    patient_services = f"""<section class="section section--tint" id="clinic-services">
+  <div class="container">
+    <div class="section-head section-head--center">
+      <span class="eyebrow">At the clinic</span>
+      <h2>Services at the Clinic in Sanpada</h2>
+      <p class="lead">From first consultation through to follow-up, these services are available at the orthopaedic clinic in Sector 1, Sanpada, Navi Mumbai.</p>
+    </div>
+    {patient_services_grid()}
   </div>
 </section>"""
 
     cta = f"""<section class="section">
   <div class="container container-narrow" style="text-align:center">
-    <h2>Discuss your symptoms at a consultation</h2>
-    <p class="lead">Consultations are {HOURS}. Call or WhatsApp {PHONE_DISP}.</p>
+    <h2>Discuss your symptoms at a consultation in Sanpada</h2>
+    <p class="lead">Orthopaedic consultations are {HOURS}. Call or WhatsApp {PHONE_DISP} to book an appointment at the clinic in Sanpada, Navi Mumbai.</p>
     <p style="margin-top:1.75rem;display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
       <a class="btn btn--primary" href="contact.html">Book Appointment</a>
       <a class="btn btn--outline" href="{WA}" target="_blank" rel="noopener">WhatsApp the clinic</a>
@@ -658,7 +715,7 @@ def build_services():
 </section>"""
 
     html = (h + topbar() + header() + navbar("services.html")
-            + '<main id="main">\n' + page_hero + overview + details + conditions + procedures + band + cta
+            + '<main id="main">\n' + page_hero + expertise_sec + overview + details + conditions + procedures + band + patient_services + cta
             + '\n</main>\n' + footer() + fabs() + tail())
     write('services.html', html)
 
@@ -727,15 +784,15 @@ def build_contact():
     jsonld = (jsonld_clinic("contact.html") + "\n" + jsonld_faq(FAQS) + "\n"
               + jsonld_breadcrumb("Contact", "contact.html"))
     h = head(
-        f"Contact &amp; Location — {CLINIC}, Sanpada, Navi Mumbai",
-        "Contact Dr. Adarsh Patil's Orthopaedic Clinic, Shop No. 4, Datta Ganesh CHS, Sector 1, Sanpada, Navi Mumbai 400705. Phone and WhatsApp +91 70205 25460. Consultations Monday to Sunday, by appointment.",
+        f"Contact &amp; Location — Orthopaedic Clinic in Sanpada, Navi Mumbai",
+        "Contact Dr. Adarsh Patil's Orthopaedic Clinic, Shop No. 4, Datta Ganesh CHS, Sector 1, Sanpada, Navi Mumbai 400705. Phone and WhatsApp +91 70205 25460. Orthopaedic consultations Monday to Sunday, by appointment.",
         "contact.html", jsonld=jsonld)
 
     page_hero = f"""<section class="page-hero">
   <div class="container">
     <p class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Contact</p>
-    <h1>Contact &amp; Location</h1>
-    <p>Consultations are {HOURS}. Call or send a WhatsApp message to confirm a slot before visiting.</p>
+    <h1>Orthopaedic Clinic in Sanpada — Contact &amp; Location</h1>
+    <p>Orthopaedic consultations are {HOURS}. Call or send a WhatsApp message to confirm a slot before visiting the clinic in Sector 1, Sanpada, Navi Mumbai.</p>
   </div>
 </section>"""
 
@@ -796,7 +853,7 @@ def build_contact():
     </div>
     {map_block()}
     <div class="grid grid--3" style="margin-top:1.75rem">
-      <article class="card"><span class="card__icon" data-tone="blue">{IC['map']}</span><h3>Getting here</h3><p>The clinic is in Sector 1, Sanpada, within Navi Mumbai. Use the map above for turn-by-turn directions.</p><a class="card__more" href="{MAP_LINK}" target="_blank" rel="noopener">Open in Google Maps {IC['arrow']}</a></article>
+      <article class="card"><span class="card__icon" data-tone="blue">{IC['map']}</span><h3>Getting to the clinic in Sanpada</h3><p>The orthopaedic clinic is in Sector 1, Sanpada, within Navi Mumbai. Use the map above for turn-by-turn directions from Vashi, Belapur, Nerul or anywhere in Navi Mumbai.</p><a class="card__more" href="{MAP_LINK}" target="_blank" rel="noopener">Open in Google Maps {IC['arrow']}</a></article>
       <article class="card"><span class="card__icon" data-tone="orange">{IC['clock']}</span><h3>Consultation hours</h3><p>{HOURS}. Please confirm your slot by phone or WhatsApp before travelling.</p></article>
       <article class="card"><span class="card__icon" data-tone="green">{IC['check']}</span><h3>What to bring</h3><p>Previous X-ray, MRI or CT films and reports, blood test results, your current medicine list, earlier discharge summaries and a photo ID.</p></article>
     </div>
