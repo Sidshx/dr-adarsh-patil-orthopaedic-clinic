@@ -20,6 +20,9 @@ MAP_Q = "Datta+Ganesh+CHS,+Plot+No.+101,+Sector+1,+Sanpada,+Navi+Mumbai,+Maharas
 MAP_LINK = "https://www.google.com/maps/search/?api=1&amp;query=" + MAP_Q
 MAP_EMBED = "https://www.google.com/maps?q=" + MAP_Q + "&amp;output=embed"
 GOOGLE_PROFILE = "https://share.google/PiXCMrwgPo3YnYGQm"
+BASE_URL = "https://sidshx.github.io/dr-adarsh-patil-orthopaedic-clinic"
+GEO_LAT = 19.06082
+GEO_LNG = 73.026138
 
 # ---------------------------------------------------------------- icons
 IC = {
@@ -59,7 +62,7 @@ def head(title, description, canonical, og_image="assets/clinic-exterior.jpg", j
 <title>{title}</title>
 <meta name="description" content="{description}">
 <meta name="theme-color" content="#162648">
-<link rel="canonical" href="{canonical}">
+<link rel="canonical" href="{BASE_URL}/{canonical}">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{CLINIC}">
@@ -67,7 +70,7 @@ def head(title, description, canonical, og_image="assets/clinic-exterior.jpg", j
 <meta property="og:description" content="{description}">
 <meta property="og:image" content="{og_image}">
 <meta property="og:locale" content="en_IN">
-<meta property="og:url" content="{canonical}">
+<meta property="og:url" content="{BASE_URL}/{canonical}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{description}">
@@ -326,6 +329,7 @@ def gallery_grid(items=None):
 
 # ---------------------------------------------------------------- JSON-LD
 def jsonld_clinic(page_url, extra_physician=""):
+    abs_url = f"{BASE_URL}/{page_url}"
     return """<script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -333,11 +337,18 @@ def jsonld_clinic(page_url, extra_physician=""):
   "@id": "%(url)s#clinic",
   "name": "%(clinic_plain)s — Bone & Joint Specialists",
   "description": "Orthopaedic clinic in Sanpada, Navi Mumbai providing consultation and treatment for bone, joint, spine and trauma conditions.",
-  "image": "assets/clinic-exterior.jpg",
-  "logo": "assets/logo-mark.png",
+  "image": "%(base)s/assets/clinic-exterior.jpg",
+  "logo": "%(base)s/assets/logo-mark.png",
   "url": "%(url)s",
   "telephone": "+91-7020525460",
   "email": "%(email)s",
+  "sameAs": ["https://share.google/PiXCMrwgPo3YnYGQm"],
+  "hasMap": "https://www.google.com/maps?q=Datta+Ganesh+CHS,+Plot+No.+101,+Sector+1,+Sanpada,+Navi+Mumbai,+Maharashtra+400705",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 19.06082,
+    "longitude": 73.026138
+  },
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Shop No. 4, Datta Ganesh CHS, Plot No. 101, Sector 1",
@@ -384,7 +395,7 @@ def jsonld_clinic(page_url, extra_physician=""):
   },
   "areaServed": ["Sanpada","Vashi","Navi Mumbai","Maharashtra"]
 }
-</script>""" % {"url": page_url, "clinic_plain": "Dr. Adarsh Patil's Orthopaedic Clinic", "email": EMAIL}
+</script>""" % {"url": abs_url, "base": BASE_URL, "clinic_plain": "Dr. Adarsh Patil's Orthopaedic Clinic", "email": EMAIL}
 
 
 def jsonld_faq(pairs):
@@ -406,8 +417,8 @@ def jsonld_breadcrumb(name, url):
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Home", "item": "index.html"},
-            {"@type": "ListItem", "position": 2, "name": name, "item": url},
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{BASE_URL}/index.html"},
+            {"@type": "ListItem", "position": 2, "name": name, "item": f"{BASE_URL}/{url}"},
         ],
     }
     return '<script type="application/ld+json">\n' + json.dumps(data, indent=2) + '\n</script>'

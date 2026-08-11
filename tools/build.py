@@ -2,6 +2,7 @@
 """Static site builder for Dr. Adarsh Patil's Orthopaedic Clinic."""
 import os
 import sys
+from datetime import date
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from partials import *  # noqa
@@ -60,8 +61,26 @@ HOSPITALS = [
     ("Suraj Hospital", "Sanpada"),
 ]
 
-FAQS = [
-    ("How do I book an appointment?",
+EXPERTISE = [
+    ("bone", "blue", "Fracture &amp; Trauma Management",
+     "Care for broken bones and injuries from falls, road traffic and workplace accidents."),
+    ("joint", "green", "Joint Pain &amp; Arthritis Treatment",
+     "Assessment and treatment of knee, hip and shoulder pain, osteoarthritis and inflammatory arthritis."),
+    ("joint", "orange", "Knee, Hip &amp; Shoulder Problems",
+     "Diagnosis and management of joint stiffness, swelling, reduced range of motion and instability."),
+    ("spine", "pink", "Spine, Back &amp; Neck Pain",
+     "Evaluation of back and neck pain, disc-related problems and nerve compression symptoms."),
+    ("run", "green", "Sports &amp; Ligament Injuries",
+     "Ligament tears, shoulder problems and sports-related injuries with a return-to-activity plan."),
+    ("hand", "blue", "Hand &amp; Wrist Conditions",
+     "Surgical and non-surgical treatment of hand and wrist conditions, following a fellowship in hand surgery."),
+    ("bone", "orange", "Osteoporosis &amp; Bone Health",
+     "Reduced bone density, fracture risk assessment and management of metabolic bone conditions."),
+    ("scope", "pink", "Complex Fracture &amp; Ilizarov Care",
+     "Ilizarov external fixation for complex fractures, non-union and deformity correction."),
+]
+
+FAQS = [    ("How do I book an appointment?",
      "Consultations are by appointment, Monday to Sunday. Call or send a WhatsApp message to +91 70205 25460, or email adarshpatilortho@gmail.com with a preferred day and time, and the clinic will confirm a slot."),
     ("What should I bring to my first visit?",
      "Please bring any previous X-rays, MRI or CT films and reports, blood test results, a list of the medicines you currently take, discharge or operation summaries from earlier treatment, and a photo identity document."),
@@ -88,6 +107,18 @@ def service_cards(link_base="services.html"):
   <h3>{title}</h3>
   <p>{desc}</p>
   <a class="card__more" href="{link_base}#{slug}">Read More {IC['arrow']}</a>
+</article>""")
+    out.append('</div>')
+    return "\n".join(out)
+
+
+def expertise_grid():
+    out = ['<div class="grid grid--4">']
+    for icon, tone, title, desc in EXPERTISE:
+        out.append(f"""<article class="card card--compact reveal">
+  <span class="card__icon card__icon--sm" data-tone="{tone}">{IC[icon]}</span>
+  <h3>{title}</h3>
+  <p>{desc}</p>
 </article>""")
     out.append('</div>')
     return "\n".join(out)
@@ -218,6 +249,17 @@ def build_index():
       <div class="stat"><span class="stat__key">Fellowship</span><span class="stat__label">Hand Surgery</span></div>
       <div class="stat"><span class="stat__key">Mon&ndash;Sun</span><span class="stat__label">By Appointment</span></div>
     </div>
+  </div>
+</section>"""
+
+    expertise = f"""<section class="section section--tint" id="expertise">
+  <div class="container">
+    <div class="section-head section-head--center">
+      <span class="eyebrow">Areas of expertise</span>
+      <h2>Orthopaedic Expertise in Sanpada, Navi Mumbai</h2>
+      <p class="lead">Dr. Adarsh D. Patil provides consultation and treatment across the full range of bone, joint, spine and trauma conditions at the clinic in Sector 1, Sanpada.</p>
+    </div>
+    {expertise_grid()}
   </div>
 </section>"""
 
@@ -370,7 +412,7 @@ def build_index():
 </section>"""
 
     html = (h + topbar() + header() + navbar("index.html")
-            + '<main id="main">\n' + hero + about + stats + services + band_walk
+            + '<main id="main">\n' + hero + about + stats + expertise + services + band_walk
             + hospitals + approach + gallery + inaug_home + band_wait + reviews + faq + contact + '\n</main>\n'
             + footer() + fabs() + lightbox() + tail(reviews=True))
     write('index.html', html)
@@ -777,10 +819,44 @@ def build_contact():
     write('contact.html', html)
 
 
+# ------------------------------------------------------------------ sitemap
+PAGES = ["index.html", "about.html", "services.html", "gallery.html", "contact.html"]
+PAGE_PRIORITIES = {"index.html": "1.0", "about.html": "0.8", "services.html": "0.9",
+                   "gallery.html": "0.6", "contact.html": "0.8"}
+
+
+def build_sitemap():
+    today = date.today().isoformat()
+    urls = []
+    for page in PAGES:
+        prio = PAGE_PRIORITIES.get(page, "0.5")
+        urls.append(f"""  <url>
+    <loc>{BASE_URL}/{page}</loc>
+    <lastmod>{today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>{prio}</priority>
+  </url>""")
+    xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    xml += "\n".join(urls) + "\n"
+    xml += '</urlset>\n'
+    p = os.path.join(ROOT, 'sitemap.xml')
+    with open(p, 'w', encoding='utf-8') as f:
+        f.write(xml)
+    print('wrote sitemap.xml', len(xml), 'bytes')
+
+    robots = f"User-agent: *\nAllow: /\n\nSitemap: {BASE_URL}/sitemap.xml\n"
+    rp = os.path.join(ROOT, 'robots.txt')
+    with open(rp, 'w', encoding='utf-8') as f:
+        f.write(robots)
+    print('wrote robots.txt')
+
+
 if __name__ == '__main__':
     build_index()
     build_about()
     build_services()
     build_gallery()
     build_contact()
+    build_sitemap()
     print('done')
