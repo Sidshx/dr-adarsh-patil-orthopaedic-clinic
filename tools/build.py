@@ -286,6 +286,18 @@ def build_index():
   </div>
 </section>"""
 
+    inaug_home = f"""<section class="section" id="inauguration">
+  <div class="container">
+    <div class="section-head section-head--center">
+      <span class="eyebrow">Opening ceremony</span>
+      <h2>Clinic Inauguration</h2>
+      <p class="lead">The clinic was inaugurated on {INAUGURATION_DATE} at Sector 1, Sanpada, by the chief guest Hon. Shri Ganesh Naik, Minister, Government of Maharashtra.</p>
+    </div>
+    {gallery_grid(inauguration_items()[:3])}
+    <p style="text-align:center;margin-top:2rem"><a class="btn btn--outline" href="gallery.html#inauguration">See all inauguration photos {IC['arrow']}</a></p>
+  </div>
+</section>"""
+
     band_wait = f"""<section class="band band--logo-left" aria-label="Clinic waiting area">
   <img src="assets/banner-waiting-area.jpg" alt="An older couple seated in the clinic waiting area" width="1600" height="406" loading="lazy">
   <div class="band__caption">
@@ -359,7 +371,7 @@ def build_index():
 
     html = (h + topbar() + header() + navbar("index.html")
             + '<main id="main">\n' + hero + about + stats + services + band_walk
-            + hospitals + approach + gallery + band_wait + reviews + faq + contact + '\n</main>\n'
+            + hospitals + approach + gallery + inaug_home + band_wait + reviews + faq + contact + '\n</main>\n'
             + footer() + fabs() + lightbox() + tail(reviews=True))
     write('index.html', html)
 
@@ -614,20 +626,35 @@ def build_gallery():
     jsonld = jsonld_clinic("gallery.html") + "\n" + jsonld_breadcrumb("Gallery", "gallery.html")
     h = head(
         f"Clinic Gallery — {CLINIC}, Sanpada",
-        "Photographs of Dr. Adarsh Patil's Orthopaedic Clinic in Sector 1, Sanpada, Navi Mumbai: the street entrance, reception corridor and examination room.",
+        "Photographs of Dr. Adarsh Patil's Orthopaedic Clinic in Sector 1, Sanpada, Navi Mumbai: the street entrance, reception corridor, examination room and the clinic's opening ceremony.",
         "gallery.html", jsonld=jsonld)
 
     page_hero = """<section class="page-hero">
   <div class="container">
     <p class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Gallery</p>
     <h1>Inside the Clinic</h1>
-    <p>Photographs of the clinic at Shop No. 4, Datta Ganesh CHS, Sector 1, Sanpada, Navi Mumbai. Select any photo to view it larger.</p>
+    <p>Photographs of the clinic at Shop No. 4, Datta Ganesh CHS, Sector 1, Sanpada, Navi Mumbai, and of its opening ceremony. Select any photo to view it larger.</p>
   </div>
 </section>"""
 
     grid = f"""<section class="section">
   <div class="container">
+    <div class="section-head section-head--center">
+      <span class="eyebrow">The premises</span>
+      <h2>Clinic photographs</h2>
+    </div>
     {gallery_grid()}
+  </div>
+</section>"""
+
+    inauguration = f"""<section class="section section--tint" id="inauguration">
+  <div class="container">
+    <div class="section-head section-head--center">
+      <span class="eyebrow">Opening ceremony</span>
+      <h2>Clinic inauguration</h2>
+      <p>The clinic was inaugurated on {INAUGURATION_DATE} at Sector 1, Sanpada. The ribbon was cut by the chief guest, Hon. Shri Ganesh Naik, Minister, Government of Maharashtra, in the presence of invited guests, family and neighbours.</p>
+    </div>
+    {gallery_grid(inauguration_items())}
   </div>
 </section>"""
 
@@ -648,7 +675,7 @@ def build_gallery():
 </section>"""
 
     html = (h + topbar() + header() + navbar("gallery.html")
-            + '<main id="main">\n' + page_hero + grid + band + notes + '\n</main>\n'
+            + '<main id="main">\n' + page_hero + grid + band + inauguration + notes + '\n</main>\n'
             + footer() + fabs() + lightbox() + tail())
     write('gallery.html', html)
 

@@ -260,9 +260,62 @@ GALLERY_ITEMS = [
 ]
 
 
-def gallery_grid():
+# Photographs from the clinic's opening ceremony, Saturday 18 July 2026.
+# Captions stay descriptive; individuals other than the chief guest named on
+# the event banner are not identified by name.
+INAUGURATION_DATE = "Saturday, 18 July 2026"
+
+INAUGURATION_ITEMS = [
+    ("ribbon-cutting",
+     "The ribbon being cut at the clinic entrance during the opening ceremony, with guests standing on either side",
+     "Cutting the ribbon at the opening"),
+    ("chief-guest-address",
+     "The chief guest speaking into a microphone in front of the clinic's inauguration banner, with invited guests seated behind",
+     "The chief guest addressing the gathering"),
+    ("address-wide",
+     "Wider view of the stage during the address, with invited guests seated on either side and attendees watching",
+     "The ceremony under way"),
+    ("guests-on-dais",
+     "Invited guests seated on the stage in front of the inauguration banner, with balloons on either side",
+     "Invited guests on the dais"),
+    ("guests-seated",
+     "Close view of three invited guests seated on the stage in front of the event banner",
+     "Guests at the ceremony"),
+    ("felicitation",
+     "Dr. Adarsh Patil presenting a bouquet of flowers to the chief guest, who has been given a ceremonial shawl",
+     "Welcoming the chief guest"),
+    ("group-photograph",
+     "Group photograph of guests, family members and staff standing together in front of the inauguration banner",
+     "Guests and family at the opening"),
+    ("family-at-signage",
+     "Four people holding a small idol beneath the clinic's wall signage on the wood-slat reception wall",
+     "Traditional prayers inside the clinic"),
+    ("consulting-room-guests",
+     "Guests standing together in the consulting room, with the doctor's framed certificates on the wall behind",
+     "Guests in the consulting room"),
+    ("consulting-room-visit",
+     "Dr. Adarsh Patil standing with visitors in the consulting room beside the consultation desk",
+     "Visitors on opening day"),
+    ("consulting-room-gathering",
+     "Family members and guests seated together in the consulting room, with bouquets and balloons around them",
+     "Family and guests at the clinic"),
+    ("bouquet-presentation",
+     "Dr. Adarsh Patil presenting a bouquet of flowers to a guest inside the clinic",
+     "Presenting a bouquet to a guest"),
+]
+
+
+def inauguration_items():
+    return [(f"assets/inauguration/thumb-{slug}.jpg",
+             f"assets/inauguration/{slug}.jpg", alt, cap)
+            for slug, alt, cap in INAUGURATION_ITEMS]
+
+
+def gallery_grid(items=None):
+    if items is None:
+        items = GALLERY_ITEMS
     out = ['<div class="gallery">']
-    for thumb, full, alt, cap in GALLERY_ITEMS:
+    for thumb, full, alt, cap in items:
         out.append(
             f'<button class="gallery__item" type="button" data-full="{full}" data-caption="{cap}">'
             f'<img src="{thumb}" alt="{alt}" loading="lazy" width="700" height="525">'
