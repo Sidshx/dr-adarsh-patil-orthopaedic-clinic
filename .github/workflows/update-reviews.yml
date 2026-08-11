@@ -1,7 +1,7 @@
 name: Update Google reviews
 
 # Keeps data/reviews.json in step with the clinic's Google Business Profile.
-# Runs daily and can also be triggered by hand from the Actions tab.
+# Runs weekly and can also be triggered by hand from the Actions tab.
 #
 # Until the GBP_* secrets are configured (see docs/reviews-setup.md) the job
 # skips itself rather than failing, so it does not send a failure email every
@@ -9,7 +9,7 @@ name: Update Google reviews
 
 on:
   schedule:
-    - cron: "30 1 * * *" # ~07:00 IST daily
+    - cron: "30 1 * * 1" # Mondays, ~07:00 IST
   workflow_dispatch:
 
 permissions:

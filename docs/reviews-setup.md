@@ -3,10 +3,10 @@
 The reviews carousel on the homepage renders from `data/reviews.json`. Nothing in the
 HTML is hand-written, so refreshing the reviews only means refreshing that one file.
 
-`.github/workflows/update-reviews.yml` does that automatically every morning
-(01:30 UTC / 07:00 IST) by calling `tools/fetch_reviews.py`. Until the credentials
-below are added, the workflow fails on the first step and the committed
-`data/reviews.json` continues to be served — the site never breaks.
+`.github/workflows/update-reviews.yml` does that automatically once a week
+(Mondays, 01:30 UTC / 07:00 IST) by calling `tools/fetch_reviews.py`. Until the credentials
+below are added, the workflow skips itself with a note in the run summary and the
+committed `data/reviews.json` continues to be served — the site never breaks.
 
 ## Why the Business Profile API and not the Places API
 
