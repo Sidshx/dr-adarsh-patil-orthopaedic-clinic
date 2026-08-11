@@ -652,7 +652,7 @@ def build_gallery():
     <div class="section-head section-head--center">
       <span class="eyebrow">Opening ceremony</span>
       <h2>Clinic inauguration</h2>
-      <p>The clinic was inaugurated on {INAUGURATION_DATE} at Sector 1, Sanpada. The ribbon was cut by the chief guest, Hon. Shri Ganesh Naik, Minister, Government of Maharashtra, in the presence of invited guests, family and neighbours.</p>
+      <p>The clinic was inaugurated on {INAUGURATION_DATE} at Sector 1, Sanpada. The ribbon was cut by the chief guest, Hon. Shri Ganesh Naik, Minister, Government of Maharashtra. He was joined by Mrs. Sujata Patil, Mayor of Navi Mumbai, Mrs. Manda Mhatre, MLA, Belapur Constituency, and Mr. Dashrath Bhagat, Deputy Mayor of Navi Mumbai, along with family, friends and neighbours.</p>
     </div>
     {gallery_grid(inauguration_items())}
   </div>
