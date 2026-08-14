@@ -448,7 +448,7 @@ def build_index():
 
     html = (h + topbar() + header() + navbar("index.html")
             + '<main id="main">\n' + hero + about + stats + expertise + services + band_walk
-            + hospitals + approach + gallery + inaug_home + band_wait + reviews + faq + contact + '\n</main>\n'
+            + hospitals + approach + gallery + band_wait + reviews + faq + contact + '\n</main>\n'
             + footer() + fabs() + lightbox() + tail(reviews=True))
     write('index.html', html)
 
