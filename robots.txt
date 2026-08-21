@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sidshx.github.io/dr-adarsh-patil-orthopaedic-clinic/sitemap.xml
+Sitemap: https://dradarshpatil.com/sitemap.xml

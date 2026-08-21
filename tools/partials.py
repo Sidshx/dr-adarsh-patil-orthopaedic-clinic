@@ -20,7 +20,7 @@ MAP_Q = "Datta+Ganesh+CHS,+Plot+No.+101,+Sector+1,+Sanpada,+Navi+Mumbai,+Maharas
 MAP_LINK = "https://www.google.com/maps/search/?api=1&amp;query=" + MAP_Q
 MAP_EMBED = "https://www.google.com/maps?q=" + MAP_Q + "&amp;output=embed"
 GOOGLE_PROFILE = "https://share.google/PiXCMrwgPo3YnYGQm"
-BASE_URL = "https://sidshx.github.io/dr-adarsh-patil-orthopaedic-clinic"
+BASE_URL = "https://dradarshpatil.com"
 GEO_LAT = 19.06082
 GEO_LNG = 73.026138
 
