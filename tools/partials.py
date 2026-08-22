@@ -1,6 +1,21 @@
 # -*- coding: utf-8 -*-
 """Shared markup partials for Dr. Adarsh Patil's Orthopaedic Clinic site."""
 
+import hashlib
+import os
+
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def asset_v(relpath):
+    """Short content hash for cache-busting CSS/JS. Returns '?v=abc12345'."""
+    full = os.path.join(_ROOT, relpath)
+    try:
+        with open(full, 'rb') as fh:
+            return "?v=" + hashlib.sha256(fh.read()).hexdigest()[:8]
+    except OSError:
+        return ""
+
 CLINIC = "Dr. Adarsh Patil's Orthopaedic Clinic"
 TAGLINE = "Bone &amp; Joint Specialists"
 DOCTOR = "Dr. Adarsh D. Patil"
@@ -83,7 +98,7 @@ def head(title, description, canonical, og_image="assets/clinic-exterior.jpg", j
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=DM+Sans:opsz,wght@9..40,400..700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css{asset_v('css/style.css')}">
 {jsonld}
 </head>
 <body>
@@ -232,11 +247,12 @@ def fabs():
 
 
 def tail(reviews=False):
-    extra = '<script src="js/reviews.js" defer></script>\n' if reviews else ''
-    return """<script src="js/main.js" defer></script>
-""" + extra + """</body>
+    extra = ('<script src="js/reviews.js' + asset_v('js/reviews.js')
+             + '" defer></script>\n') if reviews else ''
+    return ('<script src="js/main.js' + asset_v('js/main.js') + '" defer></script>\n'
+            + extra + """</body>
 </html>
-"""
+""")
 
 
 def lightbox():

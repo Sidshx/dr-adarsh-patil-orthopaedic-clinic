@@ -193,11 +193,21 @@
         lines.push('', 'Message: ' + d.get('message'));
       }
 
-      var waUrl = 'https://wa.me/917020525460?text=' + encodeURIComponent(lines.join('\n'));
+      var text = lines.join('\n');
+      var waUrl = 'https://wa.me/917020525460?text=' + encodeURIComponent(text);
+      var mailUrl = 'mailto:adarshpatilortho@gmail.com'
+        + '?subject=' + encodeURIComponent('Appointment enquiry \u2014 ' + (d.get('name') || 'Website visitor'))
+        + '&body=' + encodeURIComponent(text);
+
       window.open(waUrl, '_blank', 'noopener');
 
       if (status) {
-        status.textContent = 'WhatsApp should now open with your enquiry pre-filled. Please tap send. If it does not open, call or WhatsApp +91 70205 25460 directly.';
+        status.innerHTML = 'WhatsApp should now open in a new tab with your enquiry pre-filled \u2014 please press send there. '
+          + 'On a computer this uses WhatsApp Web, so you may need to scan the QR code first.'
+          + '<br><br>Did not open? '
+          + '<a href="' + waUrl + '" target="_blank" rel="noopener"><strong>Open WhatsApp</strong></a>'
+          + ' &nbsp;\u00b7&nbsp; <a href="' + mailUrl + '">Send by email instead</a>'
+          + ' &nbsp;\u00b7&nbsp; <a href="tel:+917020525460">Call the clinic</a>';
       }
     });
   }
