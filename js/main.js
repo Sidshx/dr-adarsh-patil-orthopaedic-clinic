@@ -155,25 +155,49 @@
     });
   }
 
-  /* ---- Contact form: front-end only, opens the visitor's email client ---- */
+  /* ---- Contact form: front-end only, opens WhatsApp with a pre-filled message ---- */
   var form = document.getElementById('enquiry-form');
   if (form) {
+    var dateField = document.getElementById('f-date');
+    if (dateField) {
+      var today = new Date();
+      var iso = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+      dateField.setAttribute('min', iso);
+    }
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      var status = document.getElementById('form-status');
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
       var d = new FormData(form);
-      var body = [
+      var dateVal = d.get('date') || '';
+      if (dateVal) {
+        var parts = dateVal.split('-');
+        if (parts.length === 3) { dateVal = parts[2] + '-' + parts[1] + '-' + parts[0]; }
+      }
+
+      var lines = [
+        'Appointment enquiry from the website',
+        '',
         'Name: ' + (d.get('name') || ''),
         'Phone: ' + (d.get('phone') || ''),
-        'Concern: ' + (d.get('concern') || ''),
-        '',
-        (d.get('message') || '')
-      ].join('\n');
-      window.location.href = 'mailto:adarshpatilortho@gmail.com'
-        + '?subject=' + encodeURIComponent('Appointment enquiry — ' + (d.get('name') || 'Website visitor'))
-        + '&body=' + encodeURIComponent(body);
-      var status = document.getElementById('form-status');
+        'Preferred date: ' + (dateVal || 'Not specified'),
+        'Preferred time: ' + (d.get('time') || 'Any time'),
+        'Reason: ' + (d.get('concern') || '')
+      ];
+      if (d.get('message')) {
+        lines.push('', 'Message: ' + d.get('message'));
+      }
+
+      var waUrl = 'https://wa.me/917020525460?text=' + encodeURIComponent(lines.join('\n'));
+      window.open(waUrl, '_blank', 'noopener');
+
       if (status) {
-        status.textContent = 'Your email application should now open with the message pre-filled. If it does not, please call or WhatsApp +91 70205 25460.';
+        status.textContent = 'WhatsApp should now open with your enquiry pre-filled. Please tap send. If it does not open, call or WhatsApp +91 70205 25460 directly.';
       }
     });
   }

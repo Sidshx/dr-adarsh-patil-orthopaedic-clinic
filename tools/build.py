@@ -811,7 +811,7 @@ def build_contact():
     <div class="reveal">
       <span class="eyebrow">Enquiry</span>
       <h2>Appointment enquiry</h2>
-      <p class="form-note">This form is not connected to a booking system. Submitting it opens your own email application with the details filled in, addressed to {EMAIL}. For a faster reply, call or WhatsApp <a href="tel:{PHONE_TEL}">{PHONE_DISP}</a>. Please do not send urgent or emergency requests through this form.</p>
+      <p class="form-note">This form is not a booking system. Submitting it opens WhatsApp with your details filled in, addressed to the clinic's number. The clinic will confirm your appointment by reply. For urgent or emergency concerns, please call <a href="tel:{PHONE_TEL}">{PHONE_DISP}</a> directly instead of using this form.</p>
       <form id="enquiry-form" novalidate>
         <div class="field">
           <label for="f-name">Your name</label>
@@ -819,7 +819,22 @@ def build_contact():
         </div>
         <div class="field">
           <label for="f-phone">Phone number</label>
-          <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel">
+          <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="f-date">Preferred date</label>
+            <input id="f-date" name="date" type="date">
+          </div>
+          <div class="field">
+            <label for="f-time">Preferred time</label>
+            <select id="f-time" name="time">
+              <option value="">Any time</option>
+              <option>Morning</option>
+              <option>Afternoon</option>
+              <option>Evening</option>
+            </select>
+          </div>
         </div>
         <div class="field">
           <label for="f-concern">Reason for the appointment</label>
@@ -835,9 +850,12 @@ def build_contact():
         </div>
         <div class="field">
           <label for="f-message">Message</label>
-          <textarea id="f-message" name="message" placeholder="Briefly describe your symptoms and a preferred day and time."></textarea>
+          <textarea id="f-message" name="message" placeholder="Briefly describe your symptoms."></textarea>
         </div>
-        <button class="btn btn--navy" type="submit">Open email with these details</button>
+        <div class="field field--check">
+          <label class="check-label"><input id="f-consent" name="consent" type="checkbox" required> I agree to be contacted by the clinic regarding this enquiry.</label>
+        </div>
+        <button class="btn btn--navy" type="submit">Send enquiry on WhatsApp</button>
         <p id="form-status" role="status" style="margin-top:0.85rem;font-size:0.9rem;color:var(--ink-soft)"></p>
       </form>
     </div>

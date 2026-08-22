@@ -473,6 +473,14 @@ li { margin-bottom: 0.4em; }
 }
 .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--orange); outline: none; box-shadow: var(--ring); }
 .field textarea { min-height: 130px; resize: vertical; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 560px) { .field-row { grid-template-columns: 1fr; } }
+.field--check { display: flex; align-items: flex-start; }
+.check-label {
+  display: flex; align-items: flex-start; gap: 0.55rem; font-weight: 400 !important;
+  font-size: 0.88rem !important; color: var(--ink-soft); cursor: pointer; margin-bottom: 0 !important;
+}
+.check-label input[type="checkbox"] { width: auto; flex: 0 0 auto; margin-top: 0.2rem; accent-color: var(--orange); }
 
 .map-frame { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--grey-200); }
 .map-frame iframe { display: block; width: 100%; height: clamp(300px, 42vw, 440px); border: 0; }
