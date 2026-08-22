@@ -168,13 +168,22 @@
       e.preventDefault();
       var status = document.getElementById('form-status');
 
+      var d = new FormData(form);
+      var dateVal = d.get('date') || '';
+
+      if (dateVal && dateField && dateField.getAttribute('min') && dateVal < dateField.getAttribute('min')) {
+        if (status) {
+          status.textContent = 'Please choose today\u2019s date or a later date for your appointment.';
+        }
+        dateField.focus();
+        return;
+      }
+
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
       }
 
-      var d = new FormData(form);
-      var dateVal = d.get('date') || '';
       if (dateVal) {
         var parts = dateVal.split('-');
         if (parts.length === 3) { dateVal = parts[2] + '-' + parts[1] + '-' + parts[0]; }
