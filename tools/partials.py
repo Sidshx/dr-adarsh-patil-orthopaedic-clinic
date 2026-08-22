@@ -75,7 +75,18 @@ IC = {
 }
 
 
+def canon_url(page):
+    """Absolute canonical URL. The homepage canonicalises to the bare domain so that
+    '/' and '/index.html' do not compete as two separate URLs in search results."""
+    page = (page or "").lstrip("/")
+    if page in ("", "index.html"):
+        return BASE_URL + "/"
+    return BASE_URL + "/" + page
+
+
 def head(title, description, canonical, og_image="assets/clinic-exterior.jpg", jsonld=""):
+    canonical_url = canon_url(canonical)
+    og_image_url = og_image if og_image.startswith("http") else BASE_URL + "/" + og_image.lstrip("/")
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,19 +95,19 @@ def head(title, description, canonical, og_image="assets/clinic-exterior.jpg", j
 <title>{title}</title>
 <meta name="description" content="{description}">
 <meta name="theme-color" content="#162648">
-<link rel="canonical" href="{BASE_URL}/{canonical}">
+<link rel="canonical" href="{canonical_url}">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{CLINIC}">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{description}">
-<meta property="og:image" content="{og_image}">
+<meta property="og:image" content="{og_image_url}">
 <meta property="og:locale" content="en_IN">
-<meta property="og:url" content="{BASE_URL}/{canonical}">
+<meta property="og:url" content="{canonical_url}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{description}">
-<meta name="twitter:image" content="{og_image}">
+<meta name="twitter:image" content="{og_image_url}">
 
 <link rel="icon" href="assets/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="assets/logo-mark-256.png">
@@ -149,7 +160,7 @@ def header():
       </a>
     </div>
     <div class="header-cta">
-      <a class="btn btn--primary" href="contact.html">Book Appointment</a>
+      <a class="btn btn--primary" href="contact.html">Appointment Enquiry</a>
     </div>
   </div>
 </header>
@@ -354,7 +365,7 @@ def gallery_grid(items=None):
 
 # ---------------------------------------------------------------- JSON-LD
 def jsonld_clinic(page_url, extra_physician=""):
-    abs_url = f"{BASE_URL}/{page_url}"
+    abs_url = canon_url(page_url)
     return """<script type="application/ld+json">
 {
   "@context": "https://schema.org",

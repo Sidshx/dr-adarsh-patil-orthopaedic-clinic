@@ -229,14 +229,14 @@ def build_index():
           <li><span class="tick">{IC['play']}</span> Fractures, trauma and ligament injuries</li>
           <li><span class="tick">{IC['play']}</span> Hand surgery and sports injuries</li>
         </ul>
-        <a class="btn btn--primary" href="contact.html">Book Appointment</a>
+        <a class="btn btn--primary" href="contact.html">Appointment Enquiry</a>
       </div>
       <div class="hero-slide">
-        <h1 class="hero__headline">
+        <p class="hero__headline">
           <span>Surgical &amp; Non-Surgical</span>
           <span>Orthopaedic Treatment</span>
           <span class="accent">In Sanpada, Navi Mumbai</span>
-        </h1>
+        </p>
         <p class="hero__text">Arthroscopy, joint replacement, spine surgery, fracture fixation, Ilizarov external fixation and hand surgery, carried out at affiliated hospitals in Navi Mumbai. Serving patients in Sanpada, Vashi and across Navi Mumbai.</p>
         <ul class="hero__points">
           <li><span class="tick">{IC['play']}</span> Consultations {HOURS}</li>
@@ -346,7 +346,7 @@ def build_index():
         <li><span class="tick">{IC['check']}</span><span><strong>Explanation of the diagnosis</strong><span>The findings are explained in English, Hindi or Marathi, whichever you prefer.</span></span></li>
         <li><span class="tick">{IC['check']}</span><span><strong>Treatment plan and follow-up</strong><span>Non-surgical and surgical options are set out, along with the follow-up schedule.</span></span></li>
       </ul>
-      <p style="margin-top:1.75rem"><a class="btn btn--primary" href="contact.html">Book an appointment</a></p>
+      <p style="margin-top:1.75rem"><a class="btn btn--primary" href="contact.html">Appointment enquiry</a></p>
     </div>
   </div>
 </section>"""
@@ -708,7 +708,7 @@ def build_services():
     <h2>Discuss your symptoms at a consultation in Sanpada</h2>
     <p class="lead">Orthopaedic consultations are {HOURS}. Call or WhatsApp {PHONE_DISP} to book an appointment at the clinic in Sanpada, Navi Mumbai.</p>
     <p style="margin-top:1.75rem;display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
-      <a class="btn btn--primary" href="contact.html">Book Appointment</a>
+      <a class="btn btn--primary" href="contact.html">Appointment Enquiry</a>
       <a class="btn btn--outline" href="{WA}" target="_blank" rel="noopener">WhatsApp the clinic</a>
     </p>
   </div>
@@ -769,7 +769,7 @@ def build_gallery():
 
     notes = """<section class="section section--tint">
   <div class="container">
-    <p style="text-align:center;margin:0"><a class="btn btn--primary" href="contact.html">Book an appointment</a></p>
+    <p style="text-align:center;margin:0"><a class="btn btn--primary" href="contact.html">Appointment enquiry</a></p>
   </div>
 </section>"""
 
@@ -906,7 +906,7 @@ def build_sitemap():
     for page in PAGES:
         prio = PAGE_PRIORITIES.get(page, "0.5")
         urls.append(f"""  <url>
-    <loc>{BASE_URL}/{page}</loc>
+    <loc>{canon_url(page)}</loc>
     <lastmod>{today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>{prio}</priority>
