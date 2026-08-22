@@ -163,6 +163,16 @@
       var today = new Date();
       var iso = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
       dateField.setAttribute('min', iso);
+      dateField.addEventListener('change', function () {
+        var st = document.getElementById('form-status');
+        if (!dateField.value || dateField.value >= iso) {
+          dateField.classList.remove('is-error');
+          if (st && st.classList.contains('form-msg--error')) {
+            st.classList.remove('form-msg--error');
+            st.textContent = '';
+          }
+        }
+      });
     }
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -171,10 +181,17 @@
       var d = new FormData(form);
       var dateVal = d.get('date') || '';
 
+      if (status) { status.classList.remove('form-msg--error'); }
+      if (dateField) { dateField.classList.remove('is-error'); }
+
       if (dateVal && dateField && dateField.getAttribute('min') && dateVal < dateField.getAttribute('min')) {
         if (status) {
-          status.textContent = 'Please choose today\u2019s date or a later date for your appointment.';
+          status.classList.add('form-msg--error');
+          status.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">'
+            + '<circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>'
+            + '<span>Please choose today\u2019s date or a later date for your appointment.</span>';
         }
+        dateField.classList.add('is-error');
         dateField.focus();
         return;
       }

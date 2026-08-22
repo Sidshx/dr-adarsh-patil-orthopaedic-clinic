@@ -481,6 +481,14 @@ li { margin-bottom: 0.4em; }
   font-size: 0.88rem !important; color: var(--ink-soft); cursor: pointer; margin-bottom: 0 !important;
 }
 .check-label input[type="checkbox"] { width: auto; flex: 0 0 auto; margin-top: 0.2rem; accent-color: var(--orange); }
+.field input.is-error, .field select.is-error { border-color: #c0392b; box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.14); }
+.form-msg--error {
+  display: flex; align-items: flex-start; gap: 0.5rem;
+  background: #fdecea; border-left: 3px solid #c0392b;
+  padding: 0.7rem 0.85rem; border-radius: 0 6px 6px 0;
+  color: #8e2c21 !important; font-weight: 500;
+}
+.form-msg--error svg { flex: 0 0 auto; width: 17px; height: 17px; margin-top: 1px; }
 
 .map-frame { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--grey-200); }
 .map-frame iframe { display: block; width: 100%; height: clamp(300px, 42vw, 440px); border: 0; }
