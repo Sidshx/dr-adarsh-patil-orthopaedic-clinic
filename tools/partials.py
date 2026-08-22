@@ -32,8 +32,15 @@ ADDRESS_3 = "Maharashtra 400705, India"
 ADDRESS_FULL = "Shop No. 4, Datta Ganesh CHS, Plot No. 101, Sector 1, Sanpada, Navi Mumbai, Maharashtra 400705, India"
 HOURS = "Monday to Sunday, by appointment"
 MAP_Q = "Datta+Ganesh+CHS,+Plot+No.+101,+Sector+1,+Sanpada,+Navi+Mumbai,+Maharashtra+400705"
-MAP_LINK = "https://www.google.com/maps/search/?api=1&amp;query=" + MAP_Q
-MAP_EMBED = "https://www.google.com/maps?q=" + MAP_Q + "&amp;output=embed"
+# Google Business Profile place identifier for the clinic listing.
+# Derived from https://maps.app.goo.gl/PWnADtfqPuCuxhHW9 (ftid 0x3be7c178731fbb35:0xddf5855568d1740a)
+MAP_CID = "15993836253553456138"
+MAP_LINK = "https://maps.google.com/?cid=" + MAP_CID
+MAP_EMBED = "https://www.google.com/maps?cid=" + MAP_CID + "&amp;output=embed"
+MAP_DIRECTIONS = (
+    "https://www.google.com/maps/dir/?api=1&amp;destination="
+    "Dr.+Adarsh+Patil%27s+Orthopaedics+Clinic,+Sector+1,+Sanpada,+Navi+Mumbai,+Maharashtra+400705"
+)
 GOOGLE_PROFILE = "https://share.google/PiXCMrwgPo3YnYGQm"
 BASE_URL = "https://dradarshpatil.com"
 GEO_LAT = 19.06082
@@ -214,7 +221,7 @@ def footer():
           <li><a href="tel:{PHONE_TEL}">{PHONE_DISP}</a></li>
           <li><a href="{WA}" target="_blank" rel="noopener">WhatsApp {PHONE_DISP}</a></li>
           <li><a href="mailto:{EMAIL}">{EMAIL}</a></li>
-          <li><a href="{MAP_LINK}" target="_blank" rel="noopener">Get directions</a></li>
+          <li><a href="{MAP_DIRECTIONS}" target="_blank" rel="noopener">Get directions</a></li>
         </ul>
       </div>
       <div>
@@ -361,7 +368,7 @@ def jsonld_clinic(page_url, extra_physician=""):
   "telephone": "+91-7020525460",
   "email": "%(email)s",
   "sameAs": ["https://share.google/PiXCMrwgPo3YnYGQm"],
-  "hasMap": "https://www.google.com/maps?q=Datta+Ganesh+CHS,+Plot+No.+101,+Sector+1,+Sanpada,+Navi+Mumbai,+Maharashtra+400705",
+  "hasMap": "https://maps.google.com/?cid=15993836253553456138",
   "geo": {
     "@type": "GeoCoordinates",
     "latitude": 19.06082,
