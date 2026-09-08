@@ -463,7 +463,7 @@ def build_about():
 
     page_hero = f"""<section class="page-hero">
   <div class="container">
-    <p class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; About</p>
+    <p class="crumbs"><a href="/">Home</a> &nbsp;/&nbsp; About</p>
     <h1>Orthopaedic Surgeon in Sanpada, Navi Mumbai</h1>
     <p>{DEGREES} &middot; {ROLE} &middot; Registration {REG}</p>
   </div>
@@ -583,7 +583,7 @@ def build_services():
 
     page_hero = f"""<section class="page-hero">
   <div class="container">
-    <p class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Services</p>
+    <p class="crumbs"><a href="/">Home</a> &nbsp;/&nbsp; Services</p>
     <h1>Orthopaedic Services in Sanpada</h1>
     <p>Consultation, diagnosis and treatment for bone, joint, spine and trauma conditions at Dr. Adarsh Patil's Orthopaedic Clinic in Sector 1, Sanpada, Navi Mumbai.</p>
   </div>
@@ -730,7 +730,7 @@ def build_gallery():
 
     page_hero = """<section class="page-hero">
   <div class="container">
-    <p class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Gallery</p>
+    <p class="crumbs"><a href="/">Home</a> &nbsp;/&nbsp; Gallery</p>
     <h1>Inside the Clinic</h1>
     <p>Photographs of the clinic at Shop No. 4, Datta Ganesh CHS, Sector 1, Sanpada, Navi Mumbai, and of its opening ceremony. Select any photo to view it larger.</p>
   </div>
@@ -790,7 +790,7 @@ def build_contact():
 
     page_hero = f"""<section class="page-hero">
   <div class="container">
-    <p class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Contact</p>
+    <p class="crumbs"><a href="/">Home</a> &nbsp;/&nbsp; Contact</p>
     <h1>Orthopaedic Clinic in Sanpada — Contact &amp; Location</h1>
     <p>Orthopaedic consultations are {HOURS}. Call or send a WhatsApp message to confirm a slot before visiting the clinic in Sector 1, Sanpada, Navi Mumbai.</p>
   </div>

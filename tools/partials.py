@@ -141,7 +141,7 @@ def topbar():
 def header():
     return f"""<header class="site-header">
   <div class="container header-row">
-    <a class="brand" href="index.html">
+    <a class="brand" href="/">
       <img class="brand__mark" src="assets/logo-mark.png" width="600" height="611" alt="{CLINIC} logo: four coloured squares showing a shoulder, hip, spine and knee">
       <span class="brand__text">
         <span class="brand__name">{DOCTOR}</span>
@@ -168,11 +168,12 @@ def header():
 
 
 def navbar(active):
-    pages = [("Home", "index.html"), ("About", "about.html"), ("Services", "services.html"),
-             ("Gallery", "gallery.html"), ("Contact", "contact.html")]
+    pages = [("Home", "index.html", "/"), ("About", "about.html", "about.html"),
+             ("Services", "services.html", "services.html"),
+             ("Gallery", "gallery.html", "gallery.html"), ("Contact", "contact.html", "contact.html")]
     links = "".join(
-        f'<li><a href="{href}"{" aria-current=\"page\"" if href == active else ""}>{label}</a></li>'
-        for label, href in pages)
+        f'<li><a href="{href}"{" aria-current=\"page\"" if key == active else ""}>{label}</a></li>'
+        for label, key, href in pages)
     return f"""<div class="navbar">
   <div class="container navbar__inner">
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
@@ -216,7 +217,7 @@ def footer():
       <div>
         <h4>Quick Links</h4>
         <ul class="footer-links">
-          <li><a href="index.html">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="about.html">About the Doctor</a></li>
           <li><a href="services.html">Services</a></li>
           <li><a href="gallery.html">Gallery</a></li>
