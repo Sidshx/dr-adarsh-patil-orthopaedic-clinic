@@ -4,6 +4,24 @@
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---- Temporary event banner dismiss ---- */
+  var eventBanner = document.querySelector('.event-banner');
+  if (eventBanner) {
+    var dismissKey = 'eventBannerDismissed';
+    try {
+      if (sessionStorage.getItem(dismissKey) === '1') {
+        eventBanner.classList.add('is-dismissed');
+      }
+    } catch (err) { /* storage unavailable, ignore */ }
+    var dismissBtn = eventBanner.querySelector('.event-banner__dismiss');
+    if (dismissBtn) {
+      dismissBtn.addEventListener('click', function () {
+        eventBanner.classList.add('is-dismissed');
+        try { sessionStorage.setItem(dismissKey, '1'); } catch (err) { /* ignore */ }
+      });
+    }
+  }
+
   /* ---- Mobile nav ---- */
   var toggle = document.querySelector('.nav-toggle');
   var navLinks = document.getElementById('primary-nav');

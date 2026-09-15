@@ -397,6 +397,22 @@ li { margin-bottom: 0.4em; }
 .band__caption h2 { color: #fff; margin-bottom: 0.3rem; font-size: var(--step-2); }
 .band__caption p { color: #d3dcec; max-width: 60ch; font-size: 0.95rem; }
 
+/* ---------- 13b. Temporary event banner ---------- */
+.event-banner { background: var(--grey-100); padding-block: clamp(0.85rem, 2vw, 1.5rem); }
+.event-banner__inner { position: relative; }
+.event-banner__frame {
+  position: relative; border: 0; padding: 0; background: none; cursor: zoom-in;
+  display: block; width: 100%; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm);
+}
+.event-banner__frame.gallery__item img { display: block; width: 100%; height: auto; aspect-ratio: 1600 / 961; object-fit: contain; background: var(--grey-100); }
+.event-banner__dismiss {
+  position: absolute; top: 0.5rem; right: 0.5rem; z-index: 2; width: 2.25rem; height: 2.25rem;
+  border: 0; border-radius: 50%; background: rgba(11, 20, 40, 0.7); color: #fff; font-size: 1.4rem;
+  line-height: 1; cursor: pointer; display: grid; place-items: center; transition: background 0.2s ease;
+}
+.event-banner__dismiss:hover { background: rgba(11, 20, 40, 0.92); }
+.event-banner.is-dismissed { display: none; }
+
 /* ---------- 14. Gallery + lightbox ---------- */
 .gallery { display: grid; gap: clamp(0.75rem, 1.6vw, 1.25rem); grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
 .gallery__item {

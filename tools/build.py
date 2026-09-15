@@ -9,6 +9,12 @@ from partials import *  # noqa
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
+# ---- Temporary homepage event banner ----
+# Set to False (or remove the event_banner() call in build_index) once the event has passed.
+EVENT_BANNER_ACTIVE = True
+EVENT_BANNER_IMAGE = "assets/event-camp-2026-09-16.jpg"
+EVENT_BANNER_CAPTION = "Free Orthopaedic Check-up Camp \u2014 16 September 2026, 10 AM to 2 PM, Shri Budheshwar Shiv Mandir, Sanpada"
+
 
 def write(name, html):
     p = os.path.join(ROOT, name)
@@ -447,10 +453,28 @@ def build_index():
 </section>"""
 
     html = (h + topbar() + header() + navbar("index.html")
+            + event_banner()
             + '<main id="main">\n' + hero + about + stats + expertise + services + band_walk
             + hospitals + approach + gallery + band_wait + reviews + faq + contact + '\n</main>\n'
             + footer() + fabs() + lightbox() + tail(reviews=True))
     write('index.html', html)
+
+
+def event_banner():
+    """Temporary homepage banner for a one-day event/camp. Poster-only, no added copy.
+    To remove: delete this call from build_index() (or clear EVENT_BANNER_ACTIVE below) and rebuild.
+    """
+    if not EVENT_BANNER_ACTIVE:
+        return ""
+    return f"""
+<section class="event-banner" aria-label="Upcoming clinic event">
+  <div class="container event-banner__inner">
+    <button class="event-banner__frame gallery__item" type="button" data-full="{EVENT_BANNER_IMAGE}" data-caption="{EVENT_BANNER_CAPTION}">
+      <img src="{EVENT_BANNER_IMAGE}" alt="{EVENT_BANNER_CAPTION}" width="1600" height="961" fetchpriority="high">
+    </button>
+    <button class="event-banner__dismiss" type="button" aria-label="Dismiss this announcement">&times;</button>
+  </div>
+</section>"""
 
 
 # ------------------------------------------------------------------ about
