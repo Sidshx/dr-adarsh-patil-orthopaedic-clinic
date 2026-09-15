@@ -477,7 +477,7 @@ def event_banner():
     <button class="event-banner__dismiss" type="button" aria-label="Dismiss this announcement">&times;</button>
     <div class="event-banner__summary">
       <h2 class="event-banner__title">Free Orthopaedic Check-up Camp \u2014 16 September 2026</h2>
-      <p class="event-banner__text">Dr. Adarsh Patil's Orthopaedic Clinic, Sanpada, Navi Mumbai, is holding a free orthopaedic check-up camp on Wednesday, 16 September 2026, from 10 AM to 2 PM at Shri Budheshwar Shiv Mandir, Sanpada. Screening covers joint pain, arthritis, osteoporosis, gout, back and neck pain, shoulder problems, fractures, ligament injuries and sports injuries. Open to residents of Sanpada, Vashi and Navi Mumbai.</p>
+      <p class="event-banner__text">Dr. Adarsh Patil's Orthopaedic Clinic, Sanpada, Navi Mumbai, is holding a free orthopaedic check-up camp on Wednesday, 16 September 2026, from 10 AM to 2 PM at Shri Budheshwar Shiv Mandir, Sanpada. Screening covers joint pain, arthritis, osteoporosis, gout, back and neck pain, shoulder problems, fractures, ligament injuries and sports injuries. Open to everyone.</p>
     </div>
   </div>
 </section>"""
