@@ -461,7 +461,9 @@ def build_index():
 
 
 def event_banner():
-    """Temporary homepage banner for a one-day event/camp. Poster-only, no added copy.
+    """Temporary homepage banner for a one-day event/camp. Poster image plus a short factual
+    text summary underneath (for search engines and accessibility \u2014 the poster itself carries
+    no separate on-image copy requirement from us).
     To remove: delete this call from build_index() (or clear EVENT_BANNER_ACTIVE below) and rebuild.
     """
     if not EVENT_BANNER_ACTIVE:
@@ -473,6 +475,10 @@ def event_banner():
       <img src="{EVENT_BANNER_IMAGE}" alt="{EVENT_BANNER_CAPTION}" width="1600" height="961" fetchpriority="high">
     </button>
     <button class="event-banner__dismiss" type="button" aria-label="Dismiss this announcement">&times;</button>
+    <div class="event-banner__summary">
+      <h2 class="event-banner__title">Free Orthopaedic Check-up Camp \u2014 16 September 2026</h2>
+      <p class="event-banner__text">Dr. Adarsh Patil's Orthopaedic Clinic, Sanpada, Navi Mumbai, is holding a free orthopaedic check-up camp on Wednesday, 16 September 2026, from 10 AM to 2 PM at Shri Budheshwar Shiv Mandir, Sanpada. Screening covers joint pain, arthritis, osteoporosis, gout, back and neck pain, shoulder problems, fractures, ligament injuries and sports injuries. Open to residents of Sanpada, Vashi and Navi Mumbai.</p>
+    </div>
   </div>
 </section>"""
 
