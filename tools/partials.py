@@ -333,8 +333,8 @@ INAUGURATION_ITEMS = [
      "Dr. Adarsh Patil and three guests holding a small idol together beneath the clinic's wall signage on the wood-slat reception wall",
      "Inside the clinic on opening day"),
     ("consulting-room-guests",
-     "Dr. Adarsh Patil standing with Mrs. Sujata Patil, Mayor of Navi Mumbai, and other guests in the consulting room, with framed certificates on the wall behind",
-     "With Mrs. Sujata Patil, Mayor of Navi Mumbai"),
+     "Dr. Adarsh Patil standing with Mrs. Sujata Patil, Mayor of Navi Mumbai, and Mr. Dashrath Bhagat, Deputy Mayor of Navi Mumbai, along with other guests in the consulting room, with framed certificates on the wall behind",
+     "With Mrs. Sujata Patil, Mayor of Navi Mumbai, and Mr. Dashrath Bhagat, Deputy Mayor of Navi Mumbai"),
     ("consulting-room-visit",
      "Dr. Adarsh Patil standing with visitors beside the consultation desk in the consulting room",
      "Visitors on opening day"),
@@ -366,13 +366,13 @@ CAMP_ITEMS = [
      "The camp poster at the venue entrance"),
     ("venue-setup",
      "Wide view of the camp setup at the temple, with a registration table, seating and the decorated stage backdrop of Shri Budheshwar Shiv Mandir",
-     "The camp setup at Shri Budheshwar Shiv Mandir"),
+     ""),
     ("venue-wide",
      "Another view of the temple stage and registration area, with volunteers and attendees at the consultation table",
-     "Volunteers and attendees at the venue"),
+     ""),
     ("registration-desk",
      "Attendees seated at the registration and consultation table under the temple's decorated entrance, with volunteers assisting",
-     "Registration at the camp"),
+     ""),
     ("signage-and-doctor",
      "A standing signboard for the clinic beside the consultation table, with Dr. Adarsh Patil seated with attendees during the camp",
      "The clinic's signboard at the camp"),
@@ -381,13 +381,13 @@ CAMP_ITEMS = [
      "Dr. Adarsh Patil consulting an attendee"),
     ("patient-consultation",
      "Dr. Adarsh Patil and volunteers attending to an attendee at the consultation table during the camp",
-     "A consultation during the camp"),
+     ""),
     ("consultation-table",
      "Volunteers and doctors seated together at the consultation table, reviewing forms with attendees",
-     "The consultation table at the camp"),
+     ""),
     ("attendees-queue",
      "Attendees gathered near the registration table at Shri Budheshwar Shiv Mandir during the camp",
-     "Attendees at the camp"),
+     ""),
 ]
 
 
@@ -402,10 +402,12 @@ def gallery_grid(items=None):
         items = GALLERY_ITEMS
     out = ['<div class="gallery">']
     for thumb, full, alt, cap in items:
+        lightbox_cap = cap or alt
+        cap_span = f'<span class="gallery__cap">{cap}</span>' if cap else ''
         out.append(
-            f'<button class="gallery__item" type="button" data-full="{full}" data-caption="{cap}">'
+            f'<button class="gallery__item" type="button" data-full="{full}" data-caption="{lightbox_cap}">'
             f'<img src="{thumb}" alt="{alt}" loading="lazy" width="700" height="525">'
-            f'<span class="gallery__cap">{cap}</span></button>')
+            f'{cap_span}</button>')
     out.append("</div>")
     return "\n".join(out)
 
