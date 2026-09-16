@@ -303,8 +303,8 @@ GALLERY_ITEMS = [
 
 
 # Photographs from the clinic's opening ceremony, Saturday 18 July 2026.
-# Captions stay descriptive; individuals other than the chief guest named on
-# the event banner are not identified by name.
+# Captions stay descriptive; named dignitaries match the titles printed on
+# the event banner and invitation.
 INAUGURATION_DATE = "Saturday, 18 July 2026"
 
 INAUGURATION_ITEMS = [
@@ -336,8 +336,8 @@ INAUGURATION_ITEMS = [
      "Dr. Adarsh Patil standing with Mrs. Sujata Patil, Mayor of Navi Mumbai, and Mr. Dashrath Bhagat, Deputy Mayor of Navi Mumbai, along with other guests in the consulting room, with framed certificates on the wall behind",
      "With Mrs. Sujata Patil, Mayor of Navi Mumbai, and Mr. Dashrath Bhagat, Deputy Mayor of Navi Mumbai"),
     ("consulting-room-visit",
-     "Dr. Adarsh Patil standing with visitors beside the consultation desk in the consulting room",
-     "Visitors on opening day"),
+     "Dr. Adarsh Patil standing beside the consultation desk with Hon. Shri Ganesh Naik, Minister, Government of Maharashtra, Mrs. Sujata Patil, Mayor of Navi Mumbai, and Mr. Dashrath Bhagat, Deputy Mayor of Navi Mumbai",
+     "With Hon. Shri Ganesh Naik, Minister, Government of Maharashtra, Mrs. Sujata Patil, Mayor of Navi Mumbai, and Mr. Dashrath Bhagat, Deputy Mayor of Navi Mumbai"),
     ("consulting-room-gathering",
      "Family members and guests seated together in the consulting room, with bouquets and balloons around them",
      "Family and guests at the clinic"),
@@ -375,7 +375,7 @@ CAMP_ITEMS = [
      ""),
     ("signage-and-doctor",
      "A standing signboard for the clinic beside the consultation table, with Dr. Adarsh Patil seated with attendees during the camp",
-     "The clinic's signboard at the camp"),
+     ""),
     ("doctor-with-patients",
      "Dr. Adarsh Patil seated at the consultation table, speaking with an attendee during the check-up camp",
      "Dr. Adarsh Patil consulting an attendee"),
