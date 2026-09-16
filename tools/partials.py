@@ -170,7 +170,9 @@ def header():
 def navbar(active):
     pages = [("Home", "index.html", "/"), ("About", "about.html", "about.html"),
              ("Services", "services.html", "services.html"),
-             ("Gallery", "gallery.html", "gallery.html"), ("Contact", "contact.html", "contact.html")]
+             ("Gallery", "gallery.html", "gallery.html"),
+             ("Events", "events.html", "events.html"),
+             ("Contact", "contact.html", "contact.html")]
     links = "".join(
         f'<li><a href="{href}"{" aria-current=\"page\"" if key == active else ""}>{label}</a></li>'
         for label, key, href in pages)
@@ -349,6 +351,50 @@ def inauguration_items():
     return [(f"assets/inauguration/thumb-{slug}.jpg",
              f"assets/inauguration/{slug}.jpg", alt, cap)
             for slug, alt, cap in INAUGURATION_ITEMS]
+
+
+# Photographs from the free orthopaedic check-up camp held at Shri Budheshwar
+# Shiv Mandir, Sanpada, on Wednesday 16 September 2026. Captions and details
+# are drawn from the camp's own printed poster and banner text.
+CAMP_DATE = "Wednesday, 16 September 2026"
+CAMP_VENUE = "Shri Budheshwar Shiv Mandir, Sanpada"
+CAMP_TIME = "10 AM to 2 PM"
+
+CAMP_ITEMS = [
+    ("poster-at-gate",
+     "The camp's poster displayed at the decorated entrance of Shri Budheshwar Shiv Mandir, Sanpada, listing the date, time and conditions covered",
+     "The camp poster at the venue entrance"),
+    ("venue-setup",
+     "Wide view of the camp setup at the temple, with a registration table, seating and the decorated stage backdrop of Shri Budheshwar Shiv Mandir",
+     "The camp setup at Shri Budheshwar Shiv Mandir"),
+    ("venue-wide",
+     "Another view of the temple stage and registration area, with volunteers and attendees at the consultation table",
+     "Volunteers and attendees at the venue"),
+    ("registration-desk",
+     "Attendees seated at the registration and consultation table under the temple's decorated entrance, with volunteers assisting",
+     "Registration at the camp"),
+    ("signage-and-doctor",
+     "A standing signboard for the clinic beside the consultation table, with Dr. Adarsh Patil seated with attendees during the camp",
+     "The clinic's signboard at the camp"),
+    ("doctor-with-patients",
+     "Dr. Adarsh Patil seated at the consultation table, speaking with an attendee during the check-up camp",
+     "Dr. Adarsh Patil consulting an attendee"),
+    ("patient-consultation",
+     "Dr. Adarsh Patil and volunteers attending to an attendee at the consultation table during the camp",
+     "A consultation during the camp"),
+    ("consultation-table",
+     "Volunteers and doctors seated together at the consultation table, reviewing forms with attendees",
+     "The consultation table at the camp"),
+    ("attendees-queue",
+     "Attendees gathered near the registration table at Shri Budheshwar Shiv Mandir during the camp",
+     "Attendees at the camp"),
+]
+
+
+def camp_items():
+    return [(f"assets/events/thumb-{slug}.jpg",
+             f"assets/events/{slug}.jpg", alt, cap)
+            for slug, alt, cap in CAMP_ITEMS]
 
 
 def gallery_grid(items=None):

@@ -11,7 +11,8 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 # ---- Temporary homepage event banner ----
 # Set to False (or remove the event_banner() call in build_index) once the event has passed.
-EVENT_BANNER_ACTIVE = True
+# The 16-09-2026 camp is over; its photos now live on the Events page instead.
+EVENT_BANNER_ACTIVE = False
 EVENT_BANNER_IMAGE = "assets/event-camp-2026-09-16.jpg"
 EVENT_BANNER_CAPTION = "Free Orthopaedic Check-up Camp \u2014 16 September 2026, 10 AM to 2 PM, Shri Budheshwar Shiv Mandir, Sanpada"
 
@@ -369,15 +370,15 @@ def build_index():
   </div>
 </section>"""
 
-    inaug_home = f"""<section class="section" id="inauguration">
+    events_teaser = f"""<section class="section" id="events">
   <div class="container">
     <div class="section-head section-head--center">
-      <span class="eyebrow">Opening ceremony</span>
-      <h2>Clinic Inauguration</h2>
-      <p class="lead">The clinic was inaugurated on {INAUGURATION_DATE} at Sector 1, Sanpada, by the chief guest Hon. Shri Ganesh Naik, Minister, Government of Maharashtra.</p>
+      <span class="eyebrow">At the clinic</span>
+      <h2>Events</h2>
+      <p class="lead">Photographs from the clinic's opening ceremony and the free orthopaedic check-up camp held at {CAMP_VENUE}.</p>
     </div>
-    {gallery_grid(inauguration_items()[:3])}
-    <p style="text-align:center;margin-top:2rem"><a class="btn btn--outline" href="gallery.html#inauguration">See all inauguration photos {IC['arrow']}</a></p>
+    {gallery_grid(camp_items()[:3])}
+    <p style="text-align:center;margin-top:2rem"><a class="btn btn--outline" href="events.html">See all event photos {IC['arrow']}</a></p>
   </div>
 </section>"""
 
@@ -455,7 +456,7 @@ def build_index():
     html = (h + topbar() + header() + navbar("index.html")
             + event_banner()
             + '<main id="main">\n' + hero + about + stats + expertise + services + band_walk
-            + hospitals + approach + gallery + band_wait + reviews + faq + contact + '\n</main>\n'
+            + hospitals + approach + gallery + band_wait + events_teaser + reviews + faq + contact + '\n</main>\n'
             + footer() + fabs() + lightbox() + tail(reviews=True))
     write('index.html', html)
 
@@ -754,14 +755,14 @@ def build_gallery():
     jsonld = jsonld_clinic("gallery.html") + "\n" + jsonld_breadcrumb("Gallery", "gallery.html")
     h = head(
         f"Clinic Gallery — {CLINIC}, Sanpada",
-        "Photographs of Dr. Adarsh Patil's Orthopaedic Clinic in Sector 1, Sanpada, Navi Mumbai: the street entrance, reception corridor, examination room and the clinic's opening ceremony.",
+        "Photographs of Dr. Adarsh Patil's Orthopaedic Clinic in Sector 1, Sanpada, Navi Mumbai: the street entrance, reception corridor and examination room.",
         "gallery.html", jsonld=jsonld)
 
     page_hero = """<section class="page-hero">
   <div class="container">
     <p class="crumbs"><a href="/">Home</a> &nbsp;/&nbsp; Gallery</p>
     <h1>Inside the Clinic</h1>
-    <p>Photographs of the clinic at Shop No. 4, Datta Ganesh CHS, Sector 1, Sanpada, Navi Mumbai, and of its opening ceremony. Select any photo to view it larger.</p>
+    <p>Photographs of the clinic at Shop No. 4, Datta Ganesh CHS, Sector 1, Sanpada, Navi Mumbai. Select any photo to view it larger. Photographs from the clinic's opening ceremony and events are on the <a href="events.html">Events page</a>.</p>
   </div>
 </section>"""
 
@@ -772,17 +773,6 @@ def build_gallery():
       <h2>Clinic photographs</h2>
     </div>
     {gallery_grid()}
-  </div>
-</section>"""
-
-    inauguration = f"""<section class="section section--tint" id="inauguration">
-  <div class="container">
-    <div class="section-head section-head--center">
-      <span class="eyebrow">Opening ceremony</span>
-      <h2>Clinic inauguration</h2>
-      <p>The clinic was inaugurated on {INAUGURATION_DATE} at Sector 1, Sanpada. The ribbon was cut by the chief guest, Hon. Shri Ganesh Naik, Minister, Government of Maharashtra. He was joined by Mrs. Sujata Patil, Mayor of Navi Mumbai, Mrs. Manda Mhatre, MLA, Belapur Constituency, and Mr. Dashrath Bhagat, Deputy Mayor of Navi Mumbai, along with family, friends and neighbours.</p>
-    </div>
-    {gallery_grid(inauguration_items())}
   </div>
 </section>"""
 
@@ -803,9 +793,59 @@ def build_gallery():
 </section>"""
 
     html = (h + topbar() + header() + navbar("gallery.html")
-            + '<main id="main">\n' + page_hero + grid + band + inauguration + notes + '\n</main>\n'
+            + '<main id="main">\n' + page_hero + grid + band + notes + '\n</main>\n'
             + footer() + fabs() + lightbox() + tail())
     write('gallery.html', html)
+
+
+# ------------------------------------------------------------------ events
+def build_events():
+    jsonld = jsonld_clinic("events.html") + "\n" + jsonld_breadcrumb("Events", "events.html")
+    h = head(
+        f"Events — Orthopaedic Camp &amp; Clinic Inauguration, Sanpada",
+        "Photographs from the free orthopaedic check-up camp at Shri Budheshwar Shiv Mandir, Sanpada, on 16 September 2026, and from the opening ceremony of Dr. Adarsh Patil's Orthopaedic Clinic, Navi Mumbai.",
+        "events.html", jsonld=jsonld)
+
+    page_hero = """<section class="page-hero">
+  <div class="container">
+    <p class="crumbs"><a href="/">Home</a> &nbsp;/&nbsp; Events</p>
+    <h1>Events</h1>
+    <p>Photographs from the clinic's public events, including the free orthopaedic check-up camp and the opening ceremony. Select any photo to view it larger.</p>
+  </div>
+</section>"""
+
+    camp = f"""<section class="section" id="camp-2026-09-16">
+  <div class="container">
+    <div class="section-head section-head--center">
+      <span class="eyebrow">Orthopaedic camp</span>
+      <h2>Free Orthopaedic Check-up Camp — {CAMP_DATE}</h2>
+      <p class="lead">Dr. Adarsh Patil's Orthopaedic Clinic held a free orthopaedic check-up camp on {CAMP_DATE}, from {CAMP_TIME}, at {CAMP_VENUE}, in association with Shri Budheshwar Shiv Mandir Trust. Screening covered joint pain, arthritis, osteoporosis, gout, back and neck pain, shoulder problems, fractures, ligament injuries and sports injuries, along with a free bone density (BMD) test. Attendees received free consultation and medicines. The camp was open to everyone and was attended by more than 200 people.</p>
+    </div>
+    {gallery_grid(camp_items())}
+  </div>
+</section>"""
+
+    inauguration = f"""<section class="section section--tint" id="inauguration">
+  <div class="container">
+    <div class="section-head section-head--center">
+      <span class="eyebrow">Opening ceremony</span>
+      <h2>Clinic inauguration</h2>
+      <p>The clinic was inaugurated on {INAUGURATION_DATE} at Sector 1, Sanpada. The ribbon was cut by the chief guest, Hon. Shri Ganesh Naik, Minister, Government of Maharashtra. He was joined by Mrs. Sujata Patil, Mayor of Navi Mumbai, Mrs. Manda Mhatre, MLA, Belapur Constituency, and Mr. Dashrath Bhagat, Deputy Mayor of Navi Mumbai, along with family, friends and neighbours.</p>
+    </div>
+    {gallery_grid(inauguration_items())}
+  </div>
+</section>"""
+
+    notes = """<section class="section section--tint">
+  <div class="container">
+    <p style="text-align:center;margin:0"><a class="btn btn--primary" href="contact.html">Appointment enquiry</a></p>
+  </div>
+</section>"""
+
+    html = (h + topbar() + header() + navbar("events.html")
+            + '<main id="main">\n' + page_hero + camp + inauguration + notes + '\n</main>\n'
+            + footer() + fabs() + lightbox() + tail())
+    write('events.html', html)
 
 
 # ------------------------------------------------------------------ contact
@@ -924,9 +964,9 @@ def build_contact():
 
 
 # ------------------------------------------------------------------ sitemap
-PAGES = ["index.html", "about.html", "services.html", "gallery.html", "contact.html"]
+PAGES = ["index.html", "about.html", "services.html", "gallery.html", "events.html", "contact.html"]
 PAGE_PRIORITIES = {"index.html": "1.0", "about.html": "0.8", "services.html": "0.9",
-                   "gallery.html": "0.6", "contact.html": "0.8"}
+                   "gallery.html": "0.6", "events.html": "0.6", "contact.html": "0.8"}
 
 
 def build_sitemap():
@@ -961,6 +1001,7 @@ if __name__ == '__main__':
     build_about()
     build_services()
     build_gallery()
+    build_events()
     build_contact()
     build_sitemap()
     print('done')
